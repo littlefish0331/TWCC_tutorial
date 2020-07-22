@@ -1,0 +1,73 @@
+# ubuntu-build-firsttime
+
+如果建立一個 ubuntu VM 
+
+ls
+sudo vim /etc/ssh/
+sudo su
+exit
+ls
+vim /etc/hosts
+sudo vim /etc/hosts
+exit
+sudo vim /etc/hosts
+vim /etc/sysctl.conf 
+sudo vim /etc/sysctl.conf 
+sudo reboot
+sysctl 
+sysctl -a|grep "ipv6\|disable"
+sysctl -a|grep "ipv6\|disable\| 1"
+sudo vim /etc/apt/sources.list
+sudo apt-get install zsh
+sudo apt-get remove zsh
+sudo vim /etc/apt/sources.list
+sudo apt-get install zsh
+sudo apt-get update
+sudo apt-get install zsh
+sudo apt-get remove zsh
+sudo apt-get install zsh
+sudo apt-get remove zsh
+exit
+date
+exit
+apt-get install ntp
+sudo apt-get install ntp
+sudo apt-get install ntpd
+sudo apt-get install ntp
+sudo apt-get update
+sudo apt-get install ntp
+ls
+vim /etc/apt/sources.list
+exit
+ping free.nchc.org.tw
+vim /etc/apt/sources.list
+sudo vim /etc/apt/sources.list
+sudo apt-get update
+sudo apt-get install ntp
+sudo ntpdate 140.110.16.1
+sudo apt-get install ntpdate
+sudo ntpdate 140.110.16.1
+systemctl stop ntp
+sudo systemctl stop ntp
+sudo ntpdate 140.110.16.1
+sudo yum update -y
+tmux
+exit
+sudo apt-get upgrade -y
+date
+sudo dpkg-reconfigure tzdata 
+date
+vim /etc/ntp.conf 
+sudo vim /etc/ntp.conf 
+sudo systemctl restart ntp
+sudo systemctl status ntp
+vim /etc/hosts
+hostname
+vim /etc/hosts
+sudo vim /etc/hosts
+ntpq -p
+cat /etc/hosts
+sudo vim /etc/apt/sources.list
+sudo su
+cat /etc/apt/sources.list
+exit
