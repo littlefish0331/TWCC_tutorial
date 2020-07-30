@@ -41,6 +41,29 @@ NGINX，是web server software，我猜和Apache很像。
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=P@ssw0rd" -p 1433:1433 --name mssql -d mcr.microsoft.com/mssql/server:2019-latest
 ```
 
+### BO_performance_part2
+
+**更改檔案或目錄之擁有者或群組:**
+
+- [Linux 更改檔案擁有者與群組，chown 指令使用教學與範例 - G. T. Wang](https://blog.gtwang.org/linux/linux-chown-command-tutorial/)
+
+```{bash}
+chown -R ubuntu /data2/bigobject
+```
+
+**建立 postgres, mariadb 的 container:**
+
+```{bash}
+docker run --name some-postgres \\
+-v /data2/postgres:/var/lib/postgresql \\
+-p 3307:3306 -e POSTGRES_PASSWORD=NCHC-COVID19 \\
+-e PGDATA=//data/pgdata -dit mariadb
+
+docker run --name some-mariadb \\
+-v /data2/mariadb/:/var/lib/mysql \\
+-p 3308:3306 -e MYSQL_ROOT_PASSWORD=NCHC-COVID19 -d mariadb
+```
+
 ---
 
 ## Docker-doc
@@ -140,6 +163,22 @@ docker --version
 > docker tag local-image:tagname new-repo:tagname
 > docker push new-repo:tagname
 
+
+docker-compose
+docker-compose
+docker-compose
+docker-compose
+docker-compose
+docker-compose???????????
+
+
+
+
+
+
+
+
+
 ### Quickstart - Part 2
 
 Get started > Quickstart > Part 2: Build and run your image
@@ -166,7 +205,7 @@ lsb_release -d
 lsb_release -a
 cat /etc/issue
 cat /etc/os-release
-hostnamectl 
+hostnamectl
 ```
 
 --

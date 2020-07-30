@@ -75,3 +75,15 @@
 - [wsargent/docker-cheat-sheet: Docker Cheat Sheet](https://github.com/wsargent/docker-cheat-sheet)
 - [docker_cheatsheet_r3v2.pdf](https://design.jboss.org/redhatdeveloper/marketing/docker_cheatsheet/cheatsheet/images/docker_cheatsheet_r3v2.pdf): 裡面還有 Dockerfile 的指令。
 - [The Ultimate Docker Cheat Sheet | dockerlabs](http://dockerlabs.collabnix.com/docker/cheatsheet/)
+
+---
+
+## windows Docker 群組權限
+
+使用 windows 系統下的 Docker 時，  
+會預設建立一個 docker group，所以要把使用者加到那個群組。
+
+- [針對 Windows 上的 Docker 用戶端錯誤進行疑難排解 - Visual Studio | Microsoft Docs](https://docs.microsoft.com/zh-tw/visualstudio/containers/troubleshooting-docker-errors?view=vs-2019)
+
+windows + x > 電腦管理 > 本機使用者和群組 > 群組 > docker-users。  
+到這裡面做設定。

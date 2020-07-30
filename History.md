@@ -1,4 +1,4 @@
-# History
+# View History
 
 - ubuntu帳號下的指令紀錄放在 /home/ubuntu/.bash_history 中。
 - echo $HISTFILE，可以得到上面的路徑。操作歷史紀錄，儲存的檔案位置。(操作歷史紀錄檔)(.bash_history)。

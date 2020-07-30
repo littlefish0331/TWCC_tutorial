@@ -1,4 +1,4 @@
-# 小技巧
+# little skills
 
 - 瀏覽器的 header，可以用`chrome://version/`做觀看。
 
@@ -10,24 +10,3 @@
   - [vi 與 vim 的指令整理 | Vixual](http://www.vixual.net/blog/archives/234)
 
 --
-
-- Linux 系統預設支援的語系資料：這與 /etc/locale.conf 有關
-- 終端介面 (bash) 的語系： 這與 LANG, LC_ALL 這幾個變數有關
-
---
-
-顯示目錄下的檔案
-
-```{bash}
-ls
-ll
-ls -al  <-- 和ll功能相同
-
-  > 可以在後面加路徑，比如 ll /mnt/e/
-```
-
-顯示該檔案的編碼與結尾。
-
-```{bash}
-file <filename>
-```

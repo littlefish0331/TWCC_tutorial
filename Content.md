@@ -2,16 +2,14 @@
 
 - [README](./README.md)
 
-## 初始
-
-- [ubuntu-build-firsttime](./ubuntu-build-firsttime.md)
-- [簡單指令](./簡單指令.md)
-- [ssh連線](./ssh連線.md)
-- [TWCC-port連線](./TWCC-port連線.md)
-
 ## 基礎
 
+- [ubuntu-build-firsttime](./ubuntu-build-firsttime.md)
+- [bash_command](./bash_command.md)
+- [ssh連線](./ssh連線.md)
+- [TWCC-port連線](./TWCC-port連線.md)
 - [History](./History.md)
+- [Mount_Disk](./Mount_Disk.md)
 
 ## 進階
 
@@ -20,4 +18,5 @@
 
 ## 其他
 
-- [小技巧](./小技巧.md)
+- [little_skills](./little_skills.md)
+- [Command_History](./Command_History.md)
