@@ -2,6 +2,10 @@
 
 簡單記錄使用過的 docker 指令，有點類似 cheet sheet。  
 
+---
+
+## docker
+
 - docker version: docker 的 version。  
 
 - docker run: Run a command in a new container
@@ -68,6 +72,40 @@
 
 ---
 
+## docker-compose
+
+Define and run multi-container applications with Docker.  
+除了可以用 .yml 腳本啟動之外，其他我覺得和一般的 docker 指令差不多。
+
+- Usage: docker-compose [-f <arg>...] [options] [COMMAND] [ARGS...]
+- Options:
+  - -f, --file FILE             Specify an alternate compose file (default: docker-compose.yml)
+  - -p, --project-name NAME     Specify an alternate project name (default: directory name)
+  - --verbose                   Show more output  
+- Commands:
+  - build              Build or rebuild services
+  - create             Create services
+  - down               Stop and remove containers, networks, images, and volumes
+  - exec               Execute a command in a running container
+  - images             List images
+  - kill               Kill containers
+  - port               Print the public port for a port binding
+  - ps                 List containers
+  - pull               Pull service images
+  - push               Push service images
+  - restart            Restart services
+  - rm                 Remove stopped containers
+  - run                Run a one-off command
+  - scale              Set number of containers for a service
+  - start              Start services
+  - stop               Stop services
+  - top                Display the running processes
+  - unpause            Unpause services
+  - up                 Create and start containers
+  - version            Show the Docker-Compose version information
+
+---
+
 ## 參考資料 - cheatsheet
 
 更多請去 cheatsheet/ 資料夾觀看。
@@ -87,3 +125,64 @@
 
 windows + x > 電腦管理 > 本機使用者和群組 > 群組 > docker-users。  
 到這裡面做設定。
+
+---
+
+## Docker 安裝 + 初始化步驟
+
+```{bash}
+curl -sSL https://get.docker.com/ | sh
+sudo usermod -aG docker ubuntu  //記得要重新登入
+```
+
+If you would like to use Docker as a non-root user, you should now consider adding your user to the "docker" group with something like: `sudo usermod -aG docker ubuntu`
+
+Remember that you will have to log out and back in for this to take effect!
+
+WARNING: Adding a user to the "docker" group will grant the ability to run containers which can be used to obtain root privileges on the docker host. Refer to https://docs.docker.com/engine/security/security/#docker-daemon-attack-surface for more information.
+
+---
+
+## 連結 docker hub + 下載 image
+
+連結登入 Docker Hub
+
+```{bash}
+docker login
+```
+
+下載 DockerCon範例
+
+```{bash}
+docker pull littlefish0331/hello-world
+docker images
+docker run -p 8080:80 --name DockerCon -d littlefish0331/hello-world
+```
+
+---
+
+## MySQL
+
+- [mysql - Docker Hub](https://hub.docker.com/_/mysql?tab=description)
+
+如果連動的資料夾沒有建立，docker會自動建立幫忙建立該路徑的資料夾。  
+如果不想要有密碼問題就 pull 5.7.31版的 MySQL。
+
+密碼無法登入的問題，詳見 Self_Command_History.md。
+
+```{bash}
+docker run --detach \
+--name some-mysql \
+-v /datamount/mysql/data:/var/lib/mysql \
+-v /datamount/mysql/conf:/etc/mysql/conf.d \
+-p 3306:3306 \
+--env MYSQL_ROOT_PASSWORD=DAS@mysql2020 \
+mysql:latest
+
+//也可以只打一行
+docker run --detach --name some-mysql -v /datamount/mysql/data:/var/lib/mysql -v /datamount/mysql/conf:/etc/mysql/conf.d -p 3306:3306 --env MYSQL_ROOT_PASSWORD=DAS@mysql2020 mysql:latest
+```
+
+---
+
+## END

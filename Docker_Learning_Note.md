@@ -1,6 +1,5 @@
 # Docker Learning Note
 
-`docker version`: docker 的 version。  
 `sudo usermod -a -G docker <username>`: 設定 user 可以執行 Docker。好像下一次登入才會生效。(亦可寫成`sudo usermod -aG docker ubuntu`)。將目前使用者加到docker群組。  
 `sudo service docker start`: 啟動docker服務。有其他方法，比如用systemctl啟動docker，詳見 `tutroial - others > phoenixnap website > 在 ubuntu 上安裝 Docker`。
 
@@ -406,3 +405,7 @@ systemctl | grep docker
 groups
 > ubuntu adm dialout cdrom floppy sudo audio dip video plugdev lxd netdev
 ```
+
+---
+
+## END

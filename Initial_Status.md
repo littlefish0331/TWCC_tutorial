@@ -1,11 +1,13 @@
-# ubuntu-build-firsttime
+# Initial Status
 
-如果建立一個 ubuntu VM，以下是TWCC預設會先執行的 script，我盡可能註解。
+如果建立一個 ubuntu VM，以下是TWCC預設會先執行的 script，我盡可能註解。  
+另外也註記一開始會安裝哪些東西，或是有哪些設定。
 
-## ubuntu
+## ubuntu script history
+
+### .bash_history
 
 > NTP 服務（ntpd）本身就有自動校時的功能，若啟用 NTP 服務後，就不可以使用 ntpdate 的方式校時，兩者僅能擇一使用。
-
 
 ```{bach}
 ls  
@@ -84,7 +86,7 @@ cat /etc/apt/sources.list
 exit  
 ```
 
-## sudo su
+### sudo su
 
 > 指令 `systemctl 操作指令 服務名稱.service`
 >  
@@ -119,3 +121,41 @@ exit
 24  sudo systemctl status rc-local.service
 25  reboot
 ```
+
+---
+
+## apt list
+
+一開始安裝的套件有 516 個。  
+其中並沒有 docker。  
+比較重點有的是 vim, zsh, python3.6, perl, openssl, ntp, nano, gzip, git, ftp, gcc-8-base, dpkg, fdisk, curl, apt。
+
+- [apt list - apt 使用筆記](https://foreachsam.github.io/book-util-apt/book/content/command/apt/apt-list/)
+- [apt - How to list all installed packages - Ask Ubuntu](https://askubuntu.com/questions/17823/how-to-list-all-installed-packages)
+
+```{bash}
+apt list
+apt list --installed | wc -l
+```
+
+---
+
+## df -h
+
+磁碟使用的初始狀況
+
+```{bash}
+Filesystem      Size  Used Avail Use% Mounted on
+udev            7.9G     0  7.9G   0% /dev
+tmpfs           1.6G  740K  1.6G   1% /run
+/dev/vda1        97G  3.1G   94G   4% /
+tmpfs           7.9G     0  7.9G   0% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs           7.9G     0  7.9G   0% /sys/fs/cgroup
+/dev/vda15      105M  3.6M  101M   4% /boot/efi
+tmpfs           1.6G     0  1.6G   0% /run/user/1000
+```
+
+---
+
+## END

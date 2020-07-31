@@ -1,14 +1,16 @@
-# TWCC-port連線
+# TWCC-port connect
 
 如果安裝 docker，啟用 container 之後，有些服務必須打開 port，  
 則必須回到 TWCC 的設定頁面上，
 
-**網路安全 > 安群性群組 > 找到屬於自己的虛擬運算個體(VM、VCS)**
+**網路安全 > 安群性群組 > 找到屬於自己的虛擬運算個體(VM、VCS)。**
 
 進入之後，會看到目前有打開的連接埠。預設是22、443。  
 也會看到方向 ingress(從外部流進)、egress(從內部流出)。
 
 如果要新增規則就按建立。
+
+---
 
 ## CIDR設定
 
@@ -55,3 +57,7 @@ UDPPort，即用戶資料包協定Port，無需在用戶端和伺服器之間建
 
 - [TCP/UDP埠列表 - 維基百科，自由的百科全書](https://zh.wikipedia.org/wiki/TCP/UDP%E7%AB%AF%E5%8F%A3%E5%88%97%E8%A1%A8)
 - [常用 TCP Port作用(各種Port介紹) @ ╭。☆║♡♥㊗-ⓨⓤⓝ-♡♥║☆。╮ :: 痞客邦 ::](https://yun1450.pixnet.net/blog/post/47494172)
+
+---
+
+## END

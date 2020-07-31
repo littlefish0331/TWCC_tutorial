@@ -1,4 +1,6 @@
-# ssh連線
+# ssh connect
+
+---
 
 ## 金鑰檔方式
 
@@ -24,13 +26,15 @@
 **MobaXterm 登入示意圖:**
 ![mobaxterm_connect_ubuntu](./image/mobaxterm_connect_ubuntu.png)
 
+---
+
 ## 帳號密碼
 
 但是有些人不習慣使用金鑰的方式做登入，那要怎麼把 ssh 的設定做修改呢?  
 首先要先建立帳號
 
 ```{bash}
-sudo su  --切換到車及使用者
+sudo su  --切換到超級使用者
 adduser <new_username>  --新增要用密碼登入的使用者名稱
 
   > 系統接下來就會指示你要輸入使用者名稱、密碼、fullname...等等。
@@ -72,3 +76,7 @@ putty.exe -ssh new_username@hostip -pw password
 或是
 start putty.exe -ssh new_username@hostip -pw password
 ```
+
+---
+
+## END
