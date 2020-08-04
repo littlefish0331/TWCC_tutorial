@@ -3,6 +3,20 @@
 如果建立一個 ubuntu VM，以下是TWCC預設會先執行的 script，我盡可能註解。  
 另外也註記一開始會安裝哪些東西，或是有哪些設定。
 
+<!-- TOC -->
+
+- [Initial Status](#initial-status)
+  - [ubuntu script history](#ubuntu-script-history)
+    - [.bash_history](#bash_history)
+    - [sudo su](#sudo-su)
+  - [apt list](#apt-list)
+  - [df -h](#df-h)
+  - [END](#end)
+
+<!-- /TOC -->
+
+---
+
 ## ubuntu script history
 
 ### .bash_history
@@ -134,7 +148,11 @@ exit
 - [apt - How to list all installed packages - Ask Ubuntu](https://askubuntu.com/questions/17823/how-to-list-all-installed-packages)
 
 ```{bash}
+//列出可安裝的套件，共 67371 個。
 apt list
+apt list | wc -l
+
+//列出有安裝的套件，並計算個數，共 516 個。
 apt list --installed | wc -l
 ```
 
@@ -143,6 +161,8 @@ apt list --installed | wc -l
 ## df -h
 
 磁碟使用的初始狀況
+
+-h, --human-readable  print sizes in powers of 1024 (e.g., 1023M)
 
 ```{bash}
 Filesystem      Size  Used Avail Use% Mounted on

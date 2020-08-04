@@ -1,5 +1,25 @@
 # bash_command
 
+盡量紀錄有使用過的 bash 操作。
+
+<!-- TOC -->
+
+- [bash_command](#bash_command)
+  - [apt](#apt)
+  - [Others](#others)
+  - [su 最高權限者](#su-最高權限者)
+  - [Linux 系統支援語系](#linux-系統支援語系)
+  - [顯示目錄下-檔案-編碼-結尾換行符號](#顯示目錄下-檔案-編碼-結尾換行符號)
+  - [權限](#權限)
+  - [View History](#view-history)
+    - [window](#window)
+  - [df](#df)
+  - [END](#end)
+
+<!-- /TOC -->
+
+---
+
 ## apt
 
 **list:**
@@ -49,7 +69,7 @@ sudo -i
 
 ---
 
-## 顯示目錄下的檔案
+## 顯示目錄下-檔案-編碼-結尾換行符號
 
 ```{bash}
 ls
@@ -59,7 +79,7 @@ ls -al  <-- 和ll功能相同
   > 可以在後面加路徑，比如 ll /mnt/e/
 ```
 
-顯示該檔案的編碼與結尾。
+顯示該檔案的編碼與結尾換行符號類型。
 
 ```{bash}
 file <filename>
@@ -67,14 +87,16 @@ file <filename>
 
 ---
 
-## 資料夾權限
+## 權限
 
 - [鳥哥的 Linux 私房菜 -- 第五章、Linux 的檔案權限與目錄配置](http://linux.vbird.org/linux_basic/0210filepermission.php)
 
-其實就是把 3*3*3=9 的作法，作一些符號上的替換。
+基本的權限分成
+轉換成數字就是: r:4, w:2, x:1。  
+那其實就是把 3*3*3=9 的作法，作一些符號上的替換。  
 
 ```{bash}
-chomod a+x *。  
+chmod a+x <filename or folder>
 ```
 
 ---

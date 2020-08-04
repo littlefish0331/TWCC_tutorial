@@ -185,4 +185,14 @@ docker run --detach --name some-mysql -v /datamount/mysql/data:/var/lib/mysql -v
 
 ---
 
+## Rstudio
+
+- [datascienceschool/rpython - Docker Hub](https://hub.docker.com/r/datascienceschool/rpython/): Ubuntu 18.04 + Python 3.7 (Anaconda3-2019.03) + R-3.6.1 + rstudio-server 1.2.1335 + Databases(PostgreSQL, Redis) + Tools(git, emacs, tex-live, pandoc, graphviz, imagemagick)、Running Services(jupyter notebook (port 8888), R-studio server (port 8787), ssh (port 22))。其實只需要 r, rstudio, python
+
+```{bash}
+docker run --name=rpython -dit -v e:\container_folder\rpython:/home/dockeruser/rpython -p 8787:8787 datascienceschool/rpython
+
+
+---
+
 ## END
