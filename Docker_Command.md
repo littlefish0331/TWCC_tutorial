@@ -70,6 +70,8 @@
 - docker export: Export a container's filesystem as a tar archive
   - Usage:  docker export [OPTIONS] CONTAINER
 
+- docker stats
+
 ---
 
 ## docker-compose

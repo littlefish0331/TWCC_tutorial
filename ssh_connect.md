@@ -1,5 +1,14 @@
 # ssh connect
 
+<!-- TOC -->
+
+- [ssh connect](#ssh-connect)
+  - [金鑰檔方式](#金鑰檔方式)
+  - [帳號密碼](#帳號密碼)
+  - [END](#end)
+
+<!-- /TOC -->
+
 ---
 
 ## 金鑰檔方式
@@ -42,7 +51,7 @@ adduser <new_username>  --新增要用密碼登入的使用者名稱
 ```
 
 ```{bash}
-vim /etc/sudoers  --修改文件
+sudo vim /etc/sudoers  --修改文件
 
   > 找 「# User privilege specification」的區塊
   > root    ALL=(ALL:ALL) ALL  <--原本就有的。

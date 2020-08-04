@@ -165,6 +165,8 @@ apt list --installed | wc -l
 -h, --human-readable  print sizes in powers of 1024 (e.g., 1023M)
 
 ```{bash}
+df -h
+
 Filesystem      Size  Used Avail Use% Mounted on
 udev            7.9G     0  7.9G   0% /dev
 tmpfs           1.6G  740K  1.6G   1% /run

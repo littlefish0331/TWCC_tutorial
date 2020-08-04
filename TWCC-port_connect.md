@@ -10,6 +10,16 @@
 
 如果要新增規則就按建立。
 
+<!-- TOC -->
+
+- [TWCC-port connect](#twcc-port-connect)
+  - [CIDR設定](#cidr設定)
+  - [協定 TCP vs UDP](#協定-tcp-vs-udp)
+  - [常見的連接埠功用](#常見的連接埠功用)
+  - [END](#end)
+
+<!-- /TOC -->
+
 ---
 
 ## CIDR設定
@@ -49,9 +59,11 @@ UDPPort，即用戶資料包協定Port，無需在用戶端和伺服器之間建
 - 22: SSH(Secure Shell) - 安全遠端登入協定，用於安全檔案傳輸（SCP，SFTP）及埠轉發。
 - 80: HTTP（HyperText Transport Protocol，超文本傳輸協定）開放的，這是上網衝浪使用最多的協定，主要用於在WWW（World Wide Web，萬維網）服務上傳輸資訊的協定。
 - 443: 網頁流覽Port，主要是用於HTTPS服務，是提供加密和通過安全Port傳輸的另一種HTTP。超文字傳輸安全協定。
+- 3266: plumber
 - 3306: 通常是 mysql
 - 8080：8080Port同80Port，是被用於WWW代理服務的，可以實現網頁流覽。
 - 8787: Rstudio
+- 8888: jupyter notebook
 
 **參考資料:**  
 

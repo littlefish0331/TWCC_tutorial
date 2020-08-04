@@ -18,6 +18,7 @@ X副對員工這麼壞= =，那公司的產品我還不用爆!
   - R, Rstudio
   - JS、CSS、HTML
   - jupyter notebook
+  - Julia
 - DB
   - Mysql
   - BigObject
