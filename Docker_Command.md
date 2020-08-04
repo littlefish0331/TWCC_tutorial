@@ -191,7 +191,7 @@ docker run --detach --name some-mysql -v /datamount/mysql/data:/var/lib/mysql -v
 
 ```{bash}
 docker run --name=rpython -dit -v e:\container_folder\rpython:/home/dockeruser/rpython -p 8787:8787 datascienceschool/rpython
-
+```
 
 ---
 
