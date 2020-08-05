@@ -1,208 +1,5 @@
-# Self Command History
+# DockerHub resource
 
-這裡存放自己操作成功，並整理過後的指令(包括 bash 和 docker)。  
-基本上照著做就可以到達同樣效果。  
-
-簡單來說就是我的指令記事本啦XD~  
-所以這邊都是從其他的 .md 檔複製過來之後，再做一點排版和補充。
-
-<!-- TOC -->autoauto- [Self Command History](#self-command-history)auto    - [basic](#basic)auto        - [歷史資訊清除](#歷史資訊清除)auto        - [重開機](#重開機)auto        - [已經安裝的套件](#已經安裝的套件)auto        - [磁碟使用的初始狀況](#磁碟使用的初始狀況)auto        - [權限](#權限)auto            - [檔案](#檔案)auto            - [目錄之擁有者或群組](#目錄之擁有者或群組)auto        - [顯示目錄下-檔案-編碼-結尾換行符號](#顯示目錄下-檔案-編碼-結尾換行符號)auto        - [su 最高權限者](#su-最高權限者)auto        - [Others](#others)auto        - [修改 ssh 登入](#修改-ssh-登入)auto        - [TWCC-port connect](#twcc-port-connect)auto    - [mount/umount Disk](#mountumount-disk)auto        - [掛載狀況](#掛載狀況)auto        - [格式化、掛載、卸除](#格式化掛載卸除)auto        - [設定開機自動掛載](#設定開機自動掛載)auto    - [Docker](#docker)auto        - [下載 docker](#下載-docker)auto        - [加入 docker 帳號到群組](#加入-docker-帳號到群組)auto        - [DockerHub login](#dockerhub-login)auto        - [下載 images-01](#下載-images-01)auto        - [下載 images-02Database](#下載-images-02database)auto            - [MSSQL: SQL SERVER](#mssql-sql-server)auto            - [mariadb](#mariadb)auto            - [下載 MySQL](#下載-mysql)auto            - [密碼無法登入的問題](#密碼無法登入的問題)auto        - [看一些變數值](#看一些變數值)auto        - [建立新用戶](#建立新用戶)auto        - [設定 local file 可以上傳](#設定-local-file-可以上傳)auto    - [END](#end)autoauto<!-- /TOC -->
-
----
-
-## basic
-
-### 歷史資訊清除
-
-```{bash}
-history -c
-history -w
-exit
-history
-```
-
---
-
-### 重開機
-
-```{bash}
-sudo reboot
-```
-
---
-
-### 已經安裝的套件
-
-```{bash}
-//列出可安裝的套件(，並計算個數)。
-apt list
-apt list | wc -l
-
-//列出有安裝的套件，並計算個數。
-apt list --installed | wc -l
-```
-
---
-
-### 磁碟使用的初始狀況
-
--h, --human-readable  print sizes in powers of 1024 (e.g., 1023M)
-
-```{bash}
-df -h
-```
-
---
-
-### 權限
-
-#### 檔案
-
-```{bash}
-chmod a+x <filename or folder>
-
-//下面兩個語法等價。
-chmod a+rwx <filename or folder>
-chmod 777 <filename or folder>
-```
-
-#### 目錄之擁有者或群組
-
-```{bash}
-chown -R ubuntu /data2/bigobject
-chown -R ubuntu:ubuntu /data2/bigobject
-```
-
---
-
-### 顯示目錄下-檔案-編碼-結尾換行符號
-
-```{bash}
-ls
-ll
-ls -al  <-- 和ll功能相同
-
-  > 可以在後面加路徑，比如 ll /mnt/e/
-```
-
-顯示該檔案的編碼與結尾換行符號類型。
-
-```{bash}
-file <filename>
-```
-
---
-
-### su 最高權限者
-
--i, --login: run login shell as the target user; a command may also be specified
-
-```{bash}
-//下面兩個效果相同。
-sudo su
-sudo -i
-```
-
---
-
-### Others
-
-- `whoami`: 顯示使用者名稱。  
-- `hostname`: 顯示主機名稱。  
-- `ifconfig`: 查詢、設定網路卡與 IP 網域等相關參數。觀察所有的網路介面。用來獲取網路介面配置資訊並對此進行修改。。
-
---
-
-### 修改 ssh 登入
-
-請看 `ssh_connect.md`
-
---
-
-### TWCC-port connect
-
-請看 `TWCC-port_connect.md`
-
----
-
-## mount/umount Disk
-
-注意這邊大部分的操作都需要 sudo su。
-
-### 掛載狀況
-
-- 磁碟使用的初始狀況。  
-- -h, --human-readable: print sizes in powers of 1024 (e.g., 1023M)
-
-```{bash}
-df -h
-```
-
-- 列出所有(掛載中)磁碟
-
-> 利用 blkid 這個指令，它可以列出所有掛載中磁碟的 UUID。  
-> blk: 是指 block device，即儲存裝置。
-
-```{bash}
-//只會顯示有掛載的
-blkid
-
-//顯示所有硬碟
-lsblk
-```
-
---
-
-### 格式化、掛載、卸除
-
-先格式化，再掛載~
-
-```{bash}
-mkfs -t ext4 /dev/vdb
-mount -t ext4 /dev/vdb /datamount
-df -h
-```
-
-卸除磁碟
-
-```{bash}
-umount ext4 /dev/vdb
-umount ext4 /datamount  //這兩個都可以。
-df -h
-```
-
---
-
-### 設定開機自動掛載
-
-各欄說明：`<file system> <mount point>   <type> <options> <dump> <pass>`  
-
-- file system：磁碟裝置代號或該裝置的 Label。
-- mount point：掛載點。
-- type：磁碟分割區的檔案系統。
-- options：檔案系統參數。
-- dump：能否被 dump 備份指令作用。
-- pass：是否以 fsck 檢驗磁區。
-
-```{bash}
-vi /etc/fstab
-
-//給一個之前用好的範例結果
-# <file system> <mount point>   <type> <options> <dump> <pass>  <--我加的註解。
-LABEL=cloudimg-rootfs   /        ext4   defaults        0 0  <--原本就有。
-LABEL=UEFI      /boot/efi       vfat    defaults        0 0  <--原本就有。
-UUID="67370358-c856-468b-b4d9-452bb3741ec3"     /datamount  ext4    defaults        0       0  <--新加的。
-```
-
----
-
-## Docker
-
-紀錄操作的指令。
-
-- 下載 docker
-- 加入 docker 帳號到群組
-- DockerHub login
 - 下載 images-01
   - OS system
     - ubuntu
@@ -218,83 +15,44 @@ UUID="67370358-c856-468b-b4d9-452bb3741ec3"     /datamount  ext4    defaults    
   - mariadb: 3307
   - bigobject
 - 下載 images-03code
+  - R
   - R+Rstudio
-  - python+jupyter notebook
-- container 操作
-  - 啟動
-  - 重啟
-  - 停止
-  - 進入 containrt
-  - docker start $(docker ps -a -q): [Command for restarting all running docker containers? - Stack Overflow](https://stackoverflow.com/questions/38221463/command-for-restarting-all-running-docker-containers)
-- custom: ubuntu, R, rstudio, Python, jupyter notebook, Julia
+  - Python
+  - Python+jupyter notebook: 有image。
+  - R+Python+Julia+jupyter notebook: 8888
+  - R+Python+Julia+jupyter lab: 9999
+  - [【Docker】建立 Jupyter Container. 這邊使用jupyter/datascience-notebook(https:/… | by JiHung Lin | Medium](https://medium.com/@jihung.mycena/docker-%E5%BB%BA%E7%AB%8B-jupyter-container-8084748e2f33)
+  
+---
 
---
-
-### 下載 docker
-
-- [Linux 修改使用者帳號設定 - usermod](https://www.opencli.com/linux/usermod-modify-linux-account)
-
-兩種方法其實是一樣的。
-
-```{bash}
-// 這是我從 社群好友 - 紙鈔(money)，那邊學的。
-// 從官方網站下載，然後以 shell 執行。
-curl -sSL https://get.docker.com/ | sh
-
-// 官方 docker Github 作法
-// 先從官方網站下載，儲存檔名為 get-docker.sh
-// 再用 sh 執行。
-// -o, --output <file> Write to file instead of stdout
-curl -fsSL https://get.docker.com -o get-docker.sh
-sh get-docker.sh
-```
-
---
-
-### 加入 docker 帳號到群組
-
-因為 Docker 安裝後，會建立一個 docker 帳號和群組。  
-如果沒有把 docker 帳號加入群組，就會北次使用 docker 指令都需要 sudo，  
-為了者直接使用 docker 指令，所以要把 docker 加入 ubuntu 群組中。  
-
-- 當使用 "-G" 參數時, usermod 會將帳號從原來加入了的群組退出, 所以在 "-G" 參數前加入 "-a" 參數, 會保留原來的群組設定。
-- 記得要重新登入。
-
-```{bash}
-sudo usermod -aG docker ubuntu
-```
-
---
-
-### DockerHub login
-
-```{bash}
-docker login
-```
-
---
-
-### 下載 images-01
-
-#### OS system
+## 下載 images-01
 
 - ubuntu
+- centos
+- thenetworkchuck/nccoffee:frenchpress
+- 下載 DockerCon 範例
+
+### OS system
+
+- [ubuntu - Docker Hub](https://hub.docker.com/_/ubuntu)
 
 ```{bash}
 docker pull ubuntu
 ```
 
-- centos
+- [centos - Docker Hub](https://hub.docker.com/_/centos)
 
 ```{bash}
 docker pull centos
 ```
 
-#### website
+--
+
+### website
 
 **thenetworkchuck/nccoffee sample:**
 
-- thenetworkchuck/nccoffee:frenchpress
+- [thenetworkchuck/nccoffee - Docker Hub](https://hub.docker.com/r/thenetworkchuck/nccoffee)
 
 ```{bash}
 // -t, --tty  Allocate a pseudo-TTY。分配偽TTY。
@@ -303,7 +61,7 @@ docker run -d -t -p 8081:80 --name nccoffee thenetworkchuck/nccoffee:frenchpress
 
 **DockerCon sample:**
 
-- 下載 DockerCon 範例
+- [下載 DockerCon 範例](https://hub.docker.com/repository/docker/littlefish0331/hello-world)
 
 ```{bash}
 docker pull littlefish0331/hello-world
@@ -325,11 +83,15 @@ docker pull fellah/gitbook
 docker run --name FAE_no72_gitbook -v /datamount/Gitbook/FAE_no72:/srv/gitbook -p 4001:4000 -d fellah/gitbook
 ```
 
---
+---
 
-### 下載 images-02Database
+## 下載 images-02Database
 
-#### MSSQL: SQL SERVER
+### MSSQL: SQL SERVER
+
+- [Microsoft SQL Server - Docker Hub](https://hub.docker.com/_/microsoft-mssql-server)
+- [KingKong Bruce記事: 一次就愛上MS SQL Server for Linux](https://blog.kkbruce.net/2017/12/ms-sql-server-for-linux.html#.XylSRCgzaUk)
+- [在 Docker 下建立並使用 MSSQL Server for Linux | Titangene Blog](https://titangene.github.io/article/docker-mssql-server-for-linux.html)
 
 **啟動 container:**
 
@@ -404,7 +166,12 @@ docker exec -it mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA \
 -Q "RESTORE DATABASE <DBname e.g. testDB> FROM DISK = N'/var/opt/mssql/data/testdb.bak' WITH  FILE = 1, NOUNLOAD, REPLACE, STATS = 5"
 ```
 
-#### mariadb
+--
+
+### mariadb
+
+- [mariadb - Docker Hub](https://hub.docker.com/_/mariadb)
+- [Change MySQL default character set to UTF-8 in my.cnf? - Stack Overflow](https://stackoverflow.com/questions/3513773/change-mysql-default-character-set-to-utf-8-in-my-cnf)
 
 **啟動 container:**
 
@@ -419,7 +186,9 @@ docker run --name some-mariadb \
 docker run --name some-mariadb -e MYSQL_ROOT_PASSWORD=mariaDB@2020 -v /datamount/mariadb/data:/var/lib/mysql -v /datamount/mariadb/conf.d:/etc/mysql/conf.d -p 3307:3306 -d mariadb
 ```
 
-**進入 container、mariaDB。查看character-set與collation:**
+#### mariadb編碼
+
+**進入 container、mariaDB:**
 
 ```{bash}
 docker exec -it some-mariadb bash
@@ -448,11 +217,27 @@ mysql -u root -p
 即連動資料夾下，新增 my.cnf，修改裡面內容。  
 修改之後要重啟 container。
 
+```{mysql}
+[client]
+default-character-set=utf8
+
+[mysql]
+default-character-set=utf8
+
+
+[mysqld]
+collation-server = utf8_unicode_ci
+init-connect='SET NAMES utf8'
+character-set-server = utf8
+```
+
 ![mariadb_setting00_mycnf](./image/mariadb_setting00_mycnf.jpg)  
 ![mariadb_setting01](./image/mariadb_setting01.jpg)  
 ![mariadb_setting02](./image/mariadb_setting02.jpg)  
 
-#### 下載 MySQL
+--
+
+### 下載 MySQL
 
 - [mysql - Docker Hub](https://hub.docker.com/_/mysql?tab=description)
 - 連動的資料夾會自動建立。  
@@ -469,7 +254,7 @@ docker run --name some-mysql \
 docker run --name some-mysql --env MYSQL_ROOT_PASSWORD=MYSQL@2020 -v /datamount/mysql/data:/var/lib/mysql -v /datamount/mysql/conf:/etc/mysql/conf.d -p 3306:3306 --detach mysql:latest
 ```
 
-##### 密碼無法登入的問題
+#### 密碼無法登入的問題
 
 這主要是因為 Mysql 版本的問題。密碼加密的方式不同。
 
@@ -582,7 +367,7 @@ command: --default-authentication-plugin=mysql_native_password
 > GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
 > ```
 
-##### 看一些變數值
+#### 看一些變數值
 
 - [查詢 MySQL 對 此帳號 開放(GRANT)哪些權限 | Tsung's Blog](https://blog.longwin.com.tw/2009/06/query-mysql-show-grant-permission-2009/)
 - [查詢 MySQL/MariaDB 資料庫的使用者帳號教學 - Office 指南](https://officeguide.cc/how-to-show-list-users-in-a-mysql-mariadb-database/)
@@ -602,7 +387,7 @@ SELECT User, Host FROM mysql.user;
 SHOW GRANTS FOR root;
 ```
 
-##### 建立新用戶
+#### 建立新用戶
 
 但是我還不太會給予權限。
 
@@ -614,7 +399,7 @@ CREATE USER 'kvgh'@'%' IDENTIFIED WITH mysql_native_password BY 'kvgh@DB2020';
 GRANT ALL PRIVILEGES ON *.* TO 'kvgh'@'%';
 ```
 
-##### 設定 local file 可以上傳
+#### 設定 local file 可以上傳
 
 - [MySQL: Enable LOAD DATA LOCAL INFILE - Stack Overflow](https://stackoverflow.com/questions/10762239/mysql-enable-load-data-local-infile)
 
@@ -634,7 +419,7 @@ SET GLOBAL local_infile = 1;
 SET GLOBAL local_infile = 1
 ```
 
-##### mysql編碼
+#### mysql編碼
 
 **進入 container、mysql:**
 
@@ -701,32 +486,26 @@ character-set-server = utf8
 local-infile = 1
 ```
 
+---
 
+## 下載 images-03code
 
+### MSSQL: SQL SERVER
 
+- [jupyter's Profile - Docker Hub](https://hub.docker.com/u/jupyter)
+- [Selecting an Image — docker-stacks latest documentation](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-datascience-notebook)
+- [jupyter/docker-stacks: Ready-to-run Docker images containing Jupyter applications](https://github.com/jupyter/docker-stacks)
 
+docker run --name rpyju_ds_lab -e JUPYTER_ENABLE_LAB=yes -v /datamount/rpyju/dslab:/home/jovyan/work -p 9999:8888 -d jupyter/datascience-notebook
+docker run --name rpyju_ds_nb -v /datamount/rpyju/dsnb:/home/jovyan/work -p 8888:8888 -d jupyter/datascience-notebook
 
+- [Running a notebook server — Jupyter Notebook 6.1.1 documentation](https://jupyter-notebook.readthedocs.io/en/stable/public_server.html)
+jupyter notebook list
+jupyter notebook password
+之後要學怎麼用在 
 
-
-
-
-
-
-
-
-
-
-
-**建立 postgres,  的 container:**
-
-```{bash}
-docker run --name some-postgres \\
--v /data2/postgres:/var/lib/postgresql \\
--p 3307:3306 -e POSTGRES_PASSWORD=NCHC-COVID19 \\
--e PGDATA=//data/pgdata -dit mariadb
-```
-
-
+- docker 指令中設定 token or password
+- dockerfile 指令中設定 token or password
 
 ---
 
