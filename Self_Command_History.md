@@ -14,7 +14,7 @@
     - [重開機](#重開機)
     - [已經安裝的套件](#已經安裝的套件)
     - [磁碟使用的初始狀況](#磁碟使用的初始狀況)
-    - [權限修改](#權限修改)
+    - [權限](#權限)
     - [顯示目錄下-檔案-編碼-結尾換行符號](#顯示目錄下-檔案-編碼-結尾換行符號)
     - [su 最高權限者](#su-最高權限者)
     - [Others](#others)
@@ -25,12 +25,11 @@
     - [格式化、掛載、卸除](#格式化掛載卸除)
     - [設定開機自動掛載](#設定開機自動掛載)
   - [Docker](#docker)
-    - [下載docker](#下載docker)
-    - [連結 docker hub](#連結-docker-hub)
-    - [下載 DockerCon範例](#下載-dockercon範例)
-  - [下載 MySQL](#下載-mysql)
-    - [docker 指令](#docker-指令)
-    - [密碼無法登入的問題](#密碼無法登入的問題)
+    - [下載 docker](#下載-docker)
+    - [加入 docker 帳號到群組](#加入-docker-帳號到群組)
+    - [DockerHub login](#dockerhub-login)
+    - [下載 images-01](#下載-images-01)
+    - [下載 images-02Database](#下載-images-02database)
     - [看一些變數值](#看一些變數值)
     - [建立新用戶](#建立新用戶)
     - [設定 local file 可以上傳](#設定-local-file-可以上傳)
@@ -84,7 +83,9 @@ df -h
 
 --
 
-### 權限修改
+### 權限
+
+#### 檔案
 
 ```{bash}
 chmod a+x <filename or folder>
@@ -92,6 +93,13 @@ chmod a+x <filename or folder>
 //下面兩個語法等價。
 chmod a+rwx <filename or folder>
 chmod 777 <filename or folder>
+```
+
+#### 目錄之擁有者或群組
+
+```{bash}
+chown -R ubuntu /data2/bigobject
+chown -R ubuntu:ubuntu /data2/bigobject
 ```
 
 --
@@ -232,13 +240,20 @@ UUID="67370358-c856-468b-b4d9-452bb3741ec3"     /datamount  ext4    defaults    
     - thenetworkchuck/nccoffee:frenchpress，8081
     - DockerCon2020 sample = littlefish0331/hello-world，8080
 - 下載 images-02Database
-  - mysql
+  - mysql: 3306
   - Postgress
-  - MSSQL
-  - mariadb
+  - MSSQL: 1433
+  - mariadb: 3307
   - bigobject
   - R+Rstudio
   - python+jupyter notebook
+- container 操作
+  - 啟動
+  - 重啟
+  - 停止
+  - 進入 containrt
+  - docker start $(docker ps -a -q): [Command for restarting all running docker containers? - Stack Overflow](https://stackoverflow.com/questions/38221463/command-for-restarting-all-running-docker-containers)
+- custom: ubuntu, R, rstudio, Python, jupyter notebook, Julia
 
 --
 
@@ -259,7 +274,6 @@ curl -sSL https://get.docker.com/ | sh
 // -o, --output <file> Write to file instead of stdout
 curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
-
 ```
 
 ### 加入 docker 帳號到群組
@@ -316,65 +330,132 @@ docker run -p 8080:80 --name DockerCon2020 -d littlefish0331/hello-world
 #### MSSQL: SQL SERVER
 
 - [Microsoft SQL Server - Docker Hub](https://hub.docker.com/_/microsoft-mssql-server)
+- [KingKong Bruce記事: 一次就愛上MS SQL Server for Linux](https://blog.kkbruce.net/2017/12/ms-sql-server-for-linux.html#.XylSRCgzaUk)
+- [在 Docker 下建立並使用 MSSQL Server for Linux | Titangene Blog](https://titangene.github.io/article/docker-mssql-server-for-linux.html)
+
+**啟動 container:**
+
+> - ACCEPT_EULA: 需同意授權合約。
+> - MSSQL_SA_PASSWORD: 需要是強式密碼並至少 8 個字元。強式密碼需包含：大寫、小寫、數字，符號四者。
+> - -p hostPort:containerPort
+> - --name: 指定 container 名稱
+> - -d: 背景執行
+> - -v: (Volume 技術)建立實體資料夾與 container 資料夾的對應關係。
+
+```{bash}
+// 建議是先把連動的實體資料夾開好，並把該資料夾的使用者以及群組設定好
+// 再執行下面指令
+sudo mkdir mssql
+chmod 775 mssql (或是 chmod 777 mssql)
+```
 
 ```{bash}
 // ACCEPT_EULA=Y。confirms your acceptance of the End-User Licensing Agreement.
 // userid = 'sa'
 // MSSQL_PID，可以選擇 MSSQL 的版本。
 // SA_PASSWORD=<your_strong_password>
-
-docker run \
+docker run --name mssql \
 -e "ACCEPT_EULA=Y" \
 -e "SA_PASSWORD=P@ssw0rd" \
+-v /datamount/mssql:/var/opt/mssql \
 -p 1433:1433 \
---name mssql -d mcr.microsoft.com/mssql/server:2019-latest
+-d mcr.microsoft.com/mssql/server:2019-latest
 
 //一行指令
-docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=P@ssw0rd" -p 1433:1433 --name mssql -d mcr.microsoft.com/mssql/server:2019-latest
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=MSSQL@2020" -v /datamount/mssql:/var/opt/mssql -p 1433:1433 --name mssql -d mcr.microsoft.com/mssql/server:2019-latest
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### BO_performance_part2
-
-**更改檔案或目錄之擁有者或群組:**
-
-- [Linux 更改檔案擁有者與群組，chown 指令使用教學與範例 - G. T. Wang](https://blog.gtwang.org/linux/linux-chown-command-tutorial/)
+**進入 container，並查看 SA 密碼:**
 
 ```{bash}
-chown -R ubuntu /data2/bigobject
+docker exec -it mssql bash
+echo $SA_PASSWORD
 ```
 
-**建立 postgres, mariadb 的 container:**
+**變更密碼:**
+
+> -S：server
+> -U：user name
+> -P：password
+> -Q：query，執行 SQL 指令後結束 sqlcmd
 
 ```{bash}
-docker run --name some-postgres \\
--v /data2/postgres:/var/lib/postgresql \\
--p 3307:3306 -e POSTGRES_PASSWORD=NCHC-COVID19 \\
--e PGDATA=//data/pgdata -dit mariadb
+docker exec -it mssql /opt/mssql-tools/bin/sqlcmd \
+  -S localhost -U SA -P '<YourStrong!Passw0rd>' \
+  -Q 'ALTER LOGIN SA WITH PASSWORD="<YourNewStrong!Passw0rd>"'
 
-docker run --name some-mariadb \\
--v /data2/mariadb/:/var/lib/mysql \\
--p 3308:3306 -e MYSQL_ROOT_PASSWORD=NCHC-COVID19 -d mariadb
+// 其實也可以再 container 裡面登入 SA 之後，再改密碼。
+// 退出 MSSQL 使用 `quit`。
+docker exec -it mssql bash
+/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'MSSQL@2020'
+ALTER LOGIN SA WITH PASSWORD="<YourNewStrong!Passw0rd>"
+quit
 ```
 
+**備份資料庫:**
 
+```{bash}
+docker exec -it mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA \
+-Q "BACKUP DATABASE <DBname e.g. testDB> TO DISK = N'/var/opt/mssql/data/testdb.bak' WITH NOFORMAT, NOINIT, NAME = 'demodb-full', SKIP, NOREWIND, NOUNLOAD, STATS = 10"
+```
 
+**還原資料庫:**
 
+```{bash}
+docker exec -it mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA \
+-Q "RESTORE DATABASE <DBname e.g. testDB> FROM DISK = N'/var/opt/mssql/data/testdb.bak' WITH  FILE = 1, NOUNLOAD, REPLACE, STATS = 5"
+```
 
+#### mariadb
 
+- [mariadb - Docker Hub](https://hub.docker.com/_/mariadb)
+- [Change MySQL default character set to UTF-8 in my.cnf? - Stack Overflow](https://stackoverflow.com/questions/3513773/change-mysql-default-character-set-to-utf-8-in-my-cnf)
+
+**啟動 container:**
+
+```{bash}
+docker run --name some-mariadb \
+-e MYSQL_ROOT_PASSWORD=mariaDB@2020 \
+-v /datamount/mariadb/data:/var/lib/mysql \
+-v /datamount/mariadb/conf.d:/etc/mysql/conf.d \
+-p 3307:3306 \
+-d mariadb
+
+docker run --name some-mariadb -e MYSQL_ROOT_PASSWORD=mariaDB@2020 -v /datamount/mariadb/data:/var/lib/mysql -v /datamount/mariadb/conf.d:/etc/mysql/conf.d -p 3307:3306 -d mariadb
+```
+
+**進入 container、mariaDB。查看character-set與collation:**
+
+```{bash}
+docker exec -it some-mariadb bash
+mysql -u root -p
+
+  > show databases;
+  > exit
+```
+
+**查看 mariaDB 的 character-set-server 和 collation-server:**
+
+```{bash}
+docker exec -it some-mariadb bash
+mysql -u root -p
+
+  > SELECT @@character_set_database, @@collation_database;
+  > SELECT DEFAULT_CHARACTER_SET_NAME, DEFAULT_COLLATION_NAME FROM INFORMATION_SCHEMA.SCHEMATA; //另一種作法
+  >
+  > show variables like 'char%';
+  > show variables like 'collation%';
+  > exit
+```
+
+**修改 Configuration file 與結果:**
+
+即連動資料夾下，新增 my.cnf，修改裡面內容。  
+修改之後要重啟 container。
+
+![mariadb_setting00_mycnf](./image/mariadb_setting00_mycnf.jpg)  
+![mariadb_setting01](./image/mariadb_setting01.jpg)  
+![mariadb_setting02](./image/mariadb_setting02.jpg)  
 
 #### 下載 MySQL
 
@@ -499,6 +580,50 @@ GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'localhost'; //應該是這個，但�
 SHOW GLOBAL VARIABLES LIKE 'local_infile';
 SET GLOBAL local_infile=1;
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**gitbook:**
+
+- [fellah/gitbook - Docker Hub](https://hub.docker.com/r/fellah/gitbook/): 有在更新
+  - google key word: build a gitbook on docker
+  - [yanqd0/gitbook - Docker Hub](https://hub.docker.com/r/yanqd0/gitbook/): 很久沒更新
+  - docker run --name FAE_no72_gitbook -v /datamount/Gitbook/FAE_no72:/srv/gitbook -p 4001:4000 -d fellah/gitbook
+- [10,000小時的修煉之路: 【Docker】Ubuntu / gitbook](http://webcache.googleusercontent.com/search?q=cache:3yNCZ36iXKQJ:maxdev.huder.link/2016/02/dockerubuntu-gitbook.html+&cd=10&hl=zh-TW&ct=clnk&gl=tw)
+- [chusiang/gitbook - Docker Hub](https://hub.docker.com/r/chusiang/gitbook): 下載量很多
+- [feizeikesi/gitbook Dockerfile - Docker Hub](https://hub.docker.com/r/feizeikesi/gitbook/dockerfile): 大陸人包的
+
+
+**MySQL:**
+
+docker run --name mysql \
+  -p 3306:3306 \
+  -v /data:/var/lib/mysql \
+  -e MYSQL_ROOT_PASSWORD=MySQLDB@root2020 \
+  -d mysql
+
+**建立 postgres,  的 container:**
+
+```{bash}
+docker run --name some-postgres \\
+-v /data2/postgres:/var/lib/postgresql \\
+-p 3307:3306 -e POSTGRES_PASSWORD=NCHC-COVID19 \\
+-e PGDATA=//data/pgdata -dit mariadb
+```
+
+
 
 ---
 

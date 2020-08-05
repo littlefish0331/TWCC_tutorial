@@ -89,6 +89,8 @@ file <filename>
 
 ## 權限
 
+### 檔案
+
 - [鳥哥的 Linux 私房菜 -- 第五章、Linux 的檔案權限與目錄配置](http://linux.vbird.org/linux_basic/0210filepermission.php)
 
 Linux檔案的基本權限就有九個，分別是 owner/group/others 三種身份各有自己的read/write/execute權限。  
@@ -108,6 +110,17 @@ chmod a+x <filename or folder>
 //下面兩個語法等價。
 chmod a+rwx <filename or folder>
 chmod 777 <filename or folder>
+```
+
+--
+
+### 目錄之擁有者或群組
+
+- [Linux 更改檔案擁有者與群組，chown 指令使用教學與範例 - G. T. Wang](https://blog.gtwang.org/linux/linux-chown-command-tutorial/)
+
+```{bash}
+chown -R ubuntu /data2/bigobject
+chown -R ubuntu:ubuntu /data2/bigobject
 ```
 
 ---

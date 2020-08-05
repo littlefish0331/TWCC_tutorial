@@ -59,7 +59,7 @@ sudo vim /etc/sudoers  --修改文件
 ```
 
 ```{bash}
-vim /etc/ssh/sshd_config  --修改 ssh 服務的設定。
+sudo vim /etc/ssh/sshd_config  --修改 ssh 服務的設定。
 
   > 將 PasswordAuthentication no 改為 yes。  
   > PasswordAuthentication yes
