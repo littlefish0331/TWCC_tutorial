@@ -6,31 +6,7 @@
 簡單來說就是我的指令記事本啦XD~  
 所以這邊都是從其他的 .md 檔複製過來之後，再做一點排版和補充。
 
-<!-- TOC -->
-
-- [Self Command History](#self-command-history)
-  - [basic](#basic)
-    - [歷史資訊清除](#歷史資訊清除)
-    - [重開機](#重開機)
-    - [已經安裝的套件](#已經安裝的套件)
-    - [磁碟使用的初始狀況](#磁碟使用的初始狀況)
-    - [權限](#權限)
-    - [顯示目錄下-檔案-編碼-結尾換行符號](#顯示目錄下-檔案-編碼-結尾換行符號)
-    - [su 最高權限者](#su-最高權限者)
-    - [Others](#others)
-    - [修改 ssh 登入](#修改-ssh-登入)
-    - [TWCC-port connect](#twcc-port-connect)
-  - [mount/umount Disk](#mountumount-disk)
-    - [掛載狀況](#掛載狀況)
-    - [格式化、掛載、卸除](#格式化掛載卸除)
-    - [設定開機自動掛載](#設定開機自動掛載)
-  - [Docker](#docker)
-    - [下載與設定](#下載與設定)
-    - [下載 images-01](#下載-images-01)
-    - [下載 images-02Database](#下載-images-02database)
-  - [END](#end)
-
-<!-- /TOC -->
+<!-- TOC -->autoauto- [Self Command History](#self-command-history)auto    - [basic](#basic)auto        - [歷史資訊清除](#歷史資訊清除)auto        - [重開機](#重開機)auto        - [已經安裝的套件](#已經安裝的套件)auto        - [磁碟使用的初始狀況](#磁碟使用的初始狀況)auto        - [權限](#權限)auto            - [檔案](#檔案)auto            - [目錄之擁有者或群組](#目錄之擁有者或群組)auto        - [顯示目錄下-檔案-編碼-結尾換行符號](#顯示目錄下-檔案-編碼-結尾換行符號)auto        - [su 最高權限者](#su-最高權限者)auto        - [Others](#others)auto        - [修改 ssh 登入](#修改-ssh-登入)auto        - [TWCC-port connect](#twcc-port-connect)auto    - [mount/umount Disk](#mountumount-disk)auto        - [掛載狀況](#掛載狀況)auto        - [格式化、掛載、卸除](#格式化掛載卸除)auto        - [設定開機自動掛載](#設定開機自動掛載)auto    - [Docker](#docker)auto        - [下載與設定](#下載與設定)auto            - [docker](#docker)auto            - [加入 docker 帳號到群組](#加入-docker-帳號到群組)auto            - [DockerHub login](#dockerhub-login)auto            - [docker-compose](#docker-compose)auto        - [下載 images-01](#下載-images-01)auto            - [OS system](#os-system)auto            - [website](#website)auto        - [下載 images-02Database](#下載-images-02database)auto            - [MSSQL: SQL SERVER](#mssql-sql-server)auto            - [mariadb](#mariadb)auto            - [下載 MySQL](#下載-mysql)auto                - [密碼無法登入的問題](#密碼無法登入的問題)auto                - [看一些變數值](#看一些變數值)auto                - [建立新用戶](#建立新用戶)auto                - [設定 local file 可以上傳](#設定-local-file-可以上傳)auto                - [mysql編碼](#mysql編碼)auto            - [BigObject](#bigobject)auto            - [ElasticSearch](#elasticsearch)auto    - [END](#end)autoauto<!-- /TOC -->
 
 ---
 
@@ -247,10 +223,15 @@ UUID="67370358-c856-468b-b4d9-452bb3741ec3"     /datamount  ext4    defaults    
   - Postgress
   - MSSQL: 1433
   - mariadb: 3307
-  - bigobject: 3308, 9090, 9091
+  - BigObject: 3308, 9090, 9091
+  - ElasticSearch: 9200, 9300
 - 下載 images-03code
-  - R+Rstudio
-  - python+jupyter notebook
+  - R
+  - Python
+  - Julia
+  - R+Rstudio: 8787
+  - Python+jupyter notebook/lab: 8888, 9999
+  - R+Python+Julia+jupyter notebook/lab: 8800, 9900
 - container 操作
   - 啟動
   - 重啟
@@ -778,6 +759,54 @@ docker stop elasticsearch && docker rm elasticsearch
 // 依照新建的 image 建立 container
 docker run --name elasticsearch -e "discovery.type=single-node" -v /datamount/elasticsearch/data:/usr/share/elasticsearch/data -v /datamount/elasticsearch/logs:/usr/share/elasticsearch/logs -p 9200:9200 -p 9300:9300 -d elasticsearch:permissions_open
 ```
+
+--
+
+### 下載 images-03code
+
+#### R+Python+Julia+jupyter notebook
+
+- [jupyter's Profile - Docker Hub](https://hub.docker.com/u/jupyter)
+- [Selecting an Image — docker-stacks latest documentation](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-datascience-notebook)
+- [jupyter/docker-stacks: Ready-to-run Docker images containing Jupyter applications](https://github.com/jupyter/docker-stacks)
+
+**啟動 container:**
+
+```{bash}
+// 以 jupyter/datascience-notebook 這個 images 為例。
+// 其他 jupyter 帳號下的 images 應該都差不多，可以再研究一下。
+docker pull jupyter/datascience-notebook
+
+// 啟動 container
+// port 8800: 使用 jupyter notebook
+// port 9900: 使用 jupyter lab
+docker run --name rpyju_ds_nb -v /datamount/rpyju/dsnb:/home/jovyan/work -p 8800:8888 -d jupyter/datascience-notebook
+docker run --name rpyju_ds_lab -e JUPYTER_ENABLE_LAB=yes -v /datamount/rpyju/dslab:/home/jovyan/work -p 9900:8888 -d jupyter/datascience-notebook
+```
+
+**登入:**
+
+- [Running a notebook server — Jupyter Notebook 6.1.1 documentation](https://jupyter-notebook.readthedocs.io/en/stable/public_server.html)
+
+登入都需要 token，取得 token 的方式就是到 container 裡面呼叫。
+
+```{bash}
+docker exec -it rpyju_ds_lab bash
+//docker exec -it rpyju_ds_nb bash
+
+// 列出 token
+jupyter notebook list
+
+// 使用密碼登入。需要 restart container 才會生效。
+jupyter notebook password
+
+  > rpyju@lab2020
+  > rpyju@nb2020
+```
+
+
+
+
 
 
 

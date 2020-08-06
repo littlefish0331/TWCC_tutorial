@@ -20,10 +20,9 @@
   - R
   - Python
   - Julia
-  - R+Rstudio: 8787, 3838
-  - Python+jupyter notebook: 有image。
-  - R+Python+Julia+jupyter notebook: 8888
-  - R+Python+Julia+jupyter lab: 9999
+  - R+Rstudio(+python2+python3): 8787, 3838
+  - Python+jupyter notebook/lab: 8888, 9999
+  - R+Python+Julia+jupyter notebook/lab: 8800, 9900
   - [【Docker】建立 Jupyter Container. 這邊使用jupyter/datascience-notebook(https:/… | by JiHung Lin | Medium](https://medium.com/@jihung.mycena/docker-%E5%BB%BA%E7%AB%8B-jupyter-container-8084748e2f33)
   
 ---
@@ -575,10 +574,10 @@ docker run --name elasticsearch -e "discovery.type=single-node" -v /datamount/el
 docker pull jupyter/datascience-notebook
 
 // 啟動 container
-// port 9999: 使用 jupyter lab
-// port 8888: 使用 jupyter notebook
-docker run --name rpyju_ds_lab -e JUPYTER_ENABLE_LAB=yes -v /datamount/rpyju/dslab:/home/jovyan/work -p 9999:8888 -d jupyter/datascience-notebook
-docker run --name rpyju_ds_nb -v /datamount/rpyju/dsnb:/home/jovyan/work -p 8888:8888 -d jupyter/datascience-notebook
+// port 8800: 使用 jupyter notebook
+// port 9900: 使用 jupyter lab
+docker run --name rpyju_ds_nb -v /datamount/rpyju/dsnb:/home/jovyan/work -p 8800:8888 -d jupyter/datascience-notebook
+docker run --name rpyju_ds_lab -e JUPYTER_ENABLE_LAB=yes -v /datamount/rpyju/dslab:/home/jovyan/work -p 9900:8888 -d jupyter/datascience-notebook
 ```
 
 **登入:**
@@ -601,20 +600,52 @@ jupyter notebook password
   > rpyju@nb2020
 ```
 
+--
+
+### R+Rstudio
+
+- [rocker/rstudio Tags - Docker Hub](https://hub.docker.com/r/rocker/rstudio/tags)
+
+建議下載 tag 有 ubuntu 的版本。
+因為有嘗試過 tag: 3.6.3，結果啟動 container 失敗。  
+
+```{bash}
+// 下載 tag: 3.6.3-ubuntu18.04
+// 內部有 python2, python3
+docker pull rocker/rstudio:3.6.3-ubuntu18.04
+
+docker run --name rstudio_363ubuntu \
+-e ROOT=TRUE \
+-e PASSWORD=rstudio@2020 \
+-e ADD=shiny \
+-v /datamount/rstudio:/home/rstudio \
+-p 3838:3838 -p 8787:8787 \
+-d rocker/rstudio:3.6.3-ubuntu18.04
+
+// 下載 tag: latest
+docker pull rocker/rstudio
+
+docker run --name rstudio_latest \
+-e ROOT=TRUE \
+-e PASSWORD=rstudio@2020 \
+-e ADD=shiny \
+-v /datamount/rstudio:/home/rstudio \
+-p 3838:3838 -p 8787:8787 \
+-d rocker/rstudio
+```
+
+**安裝R套件:**
+
+目前套件可以直接安裝。  
+如果以後遇到失敗的狀況，可以嘗試下列方法:
+
+- install.packages(pkgs = "package_name", lib = "your_path)
+- install.packages(pkgs = "package_name", lib = "your_path, dependencies = T)
+- use terminal > R
+- use terminal > sudo su > R
 
 
 
-
-
-
-docker run -e ROOT=TRUE -e PASSWORD=rstudio@2020 -e ADD=shiny -v /data/rstudio:/home/rstudio -p 3838:3838 -p 8787:8787 -d rocker/rstudio
-
--e DISABLE_AUTH=true
-
-安裝套件，要使用 terminal
-sudo su
-R
-在進行安裝
 
 
 

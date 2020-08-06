@@ -10,15 +10,7 @@
 
 如果要新增規則就按建立。
 
-<!-- TOC -->
-
-- [TWCC-port connect](#twcc-port-connect)
-  - [CIDR設定](#cidr設定)
-  - [協定 TCP vs UDP](#協定-tcp-vs-udp)
-  - [常見的連接埠功用](#常見的連接埠功用)
-  - [END](#end)
-
-<!-- /TOC -->
+<!-- TOC -->autoauto- [TWCC-port connect](#twcc-port-connect)auto    - [CIDR設定](#cidr設定)auto    - [協定 TCP vs UDP](#協定-tcp-vs-udp)auto    - [常見的連接埠功用](#常見的連接埠功用)auto    - [END](#end)autoauto<!-- /TOC -->
 
 ---
 
@@ -64,6 +56,11 @@ UDPPort，即用戶資料包協定Port，無需在用戶端和伺服器之間建
 - 8080：8080Port同80Port，是被用於WWW代理服務的，可以實現網頁流覽。
 - 8787: Rstudio
 - 8888: jupyter notebook
+
+**TWCC-VM 無法使用的 port:**
+
+就算我安全性群組有打開，還是不能連。完全不懂XD~  
+黑名單: 6666
 
 **參考資料:**  
 
