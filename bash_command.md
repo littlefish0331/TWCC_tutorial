@@ -92,6 +92,7 @@ file <filename>
 ### 檔案
 
 - [鳥哥的 Linux 私房菜 -- 第五章、Linux 的檔案權限與目錄配置](http://linux.vbird.org/linux_basic/0210filepermission.php)
+- -R, --recursive        change files and directories recursively
 
 Linux檔案的基本權限就有九個，分別是 owner/group/others 三種身份各有自己的read/write/execute權限。  
 檔案的權限字元為: 『-rwxrwxrwx』，這九個權限是三個三個一組的!  
@@ -117,6 +118,7 @@ chmod 777 <filename or folder>
 ### 目錄之擁有者或群組
 
 - [Linux 更改檔案擁有者與群組，chown 指令使用教學與範例 - G. T. Wang](https://blog.gtwang.org/linux/linux-chown-command-tutorial/)
+- -R, --recursive        change files and directories recursively
 
 ```{bash}
 chown -R ubuntu /data2/bigobject

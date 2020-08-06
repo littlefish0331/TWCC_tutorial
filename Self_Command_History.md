@@ -6,7 +6,31 @@
 簡單來說就是我的指令記事本啦XD~  
 所以這邊都是從其他的 .md 檔複製過來之後，再做一點排版和補充。
 
-<!-- TOC -->autoauto- [Self Command History](#self-command-history)auto    - [basic](#basic)auto        - [歷史資訊清除](#歷史資訊清除)auto        - [重開機](#重開機)auto        - [已經安裝的套件](#已經安裝的套件)auto        - [磁碟使用的初始狀況](#磁碟使用的初始狀況)auto        - [權限](#權限)auto            - [檔案](#檔案)auto            - [目錄之擁有者或群組](#目錄之擁有者或群組)auto        - [顯示目錄下-檔案-編碼-結尾換行符號](#顯示目錄下-檔案-編碼-結尾換行符號)auto        - [su 最高權限者](#su-最高權限者)auto        - [Others](#others)auto        - [修改 ssh 登入](#修改-ssh-登入)auto        - [TWCC-port connect](#twcc-port-connect)auto    - [mount/umount Disk](#mountumount-disk)auto        - [掛載狀況](#掛載狀況)auto        - [格式化、掛載、卸除](#格式化掛載卸除)auto        - [設定開機自動掛載](#設定開機自動掛載)auto    - [Docker](#docker)auto        - [下載 docker](#下載-docker)auto        - [加入 docker 帳號到群組](#加入-docker-帳號到群組)auto        - [DockerHub login](#dockerhub-login)auto        - [下載 images-01](#下載-images-01)auto        - [下載 images-02Database](#下載-images-02database)auto            - [MSSQL: SQL SERVER](#mssql-sql-server)auto            - [mariadb](#mariadb)auto            - [下載 MySQL](#下載-mysql)auto            - [密碼無法登入的問題](#密碼無法登入的問題)auto        - [看一些變數值](#看一些變數值)auto        - [建立新用戶](#建立新用戶)auto        - [設定 local file 可以上傳](#設定-local-file-可以上傳)auto    - [END](#end)autoauto<!-- /TOC -->
+<!-- TOC -->
+
+- [Self Command History](#self-command-history)
+  - [basic](#basic)
+    - [歷史資訊清除](#歷史資訊清除)
+    - [重開機](#重開機)
+    - [已經安裝的套件](#已經安裝的套件)
+    - [磁碟使用的初始狀況](#磁碟使用的初始狀況)
+    - [權限](#權限)
+    - [顯示目錄下-檔案-編碼-結尾換行符號](#顯示目錄下-檔案-編碼-結尾換行符號)
+    - [su 最高權限者](#su-最高權限者)
+    - [Others](#others)
+    - [修改 ssh 登入](#修改-ssh-登入)
+    - [TWCC-port connect](#twcc-port-connect)
+  - [mount/umount Disk](#mountumount-disk)
+    - [掛載狀況](#掛載狀況)
+    - [格式化、掛載、卸除](#格式化掛載卸除)
+    - [設定開機自動掛載](#設定開機自動掛載)
+  - [Docker](#docker)
+    - [下載與設定](#下載與設定)
+    - [下載 images-01](#下載-images-01)
+    - [下載 images-02Database](#下載-images-02database)
+  - [END](#end)
+
+<!-- /TOC -->
 
 ---
 
@@ -58,6 +82,8 @@ df -h
 
 #### 檔案
 
+- -R, --recursive        change files and directories recursively
+
 ```{bash}
 chmod a+x <filename or folder>
 
@@ -67,6 +93,8 @@ chmod 777 <filename or folder>
 ```
 
 #### 目錄之擁有者或群組
+
+- -R, --recursive        change files and directories recursively
 
 ```{bash}
 chown -R ubuntu /data2/bigobject
@@ -200,9 +228,11 @@ UUID="67370358-c856-468b-b4d9-452bb3741ec3"     /datamount  ext4    defaults    
 
 紀錄操作的指令。
 
-- 下載 docker
-- 加入 docker 帳號到群組
-- DockerHub login
+- 下載與設定
+  - docker
+  - 加入 docker 帳號到群組
+  - DockerHub login
+  - docker-compose
 - 下載 images-01
   - OS system
     - ubuntu
@@ -211,12 +241,13 @@ UUID="67370358-c856-468b-b4d9-452bb3741ec3"     /datamount  ext4    defaults    
     - thenetworkchuck/nccoffee:frenchpress，8081
     - DockerCon2020 sample = littlefish0331/hello-world，8080
     - Gitbook: 4001
+    - Grafana: 3000
 - 下載 images-02Database
   - mysql: 3306
   - Postgress
   - MSSQL: 1433
   - mariadb: 3307
-  - bigobject
+  - bigobject: 3308, 9090, 9091
 - 下載 images-03code
   - R+Rstudio
   - python+jupyter notebook
@@ -230,7 +261,9 @@ UUID="67370358-c856-468b-b4d9-452bb3741ec3"     /datamount  ext4    defaults    
 
 --
 
-### 下載 docker
+### 下載與設定
+
+#### docker
 
 - [Linux 修改使用者帳號設定 - usermod](https://www.opencli.com/linux/usermod-modify-linux-account)
 
@@ -249,9 +282,7 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
 ```
 
---
-
-### 加入 docker 帳號到群組
+#### 加入 docker 帳號到群組
 
 因為 Docker 安裝後，會建立一個 docker 帳號和群組。  
 如果沒有把 docker 帳號加入群組，就會北次使用 docker 指令都需要 sudo，  
@@ -264,12 +295,29 @@ sh get-docker.sh
 sudo usermod -aG docker ubuntu
 ```
 
---
-
-### DockerHub login
+#### DockerHub login
 
 ```{bash}
 docker login
+
+  > littlefish0331
+  > 去看PC的密碼.txt
+```
+
+#### docker-compose
+
+- [Install Docker Compose | Docker Documentation](https://docs.docker.com/compose/install/)
+- [linux下chmod +x的意思？为什么要进行chmod +x_yunlive的博客-CSDN博客](https://blog.csdn.net/u012106306/article/details/80436911)
+
+```{bash}
+// 下載 docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+// 讓 docker-compose 變更為執行檔。
+sudo chmod +x /usr/local/bin/docker-compose
+
+// 查看 docker-compose 版本。
+docker-compose version
 ```
 
 --
@@ -312,17 +360,21 @@ docker run -p 8080:80 --name DockerCon2020 -d littlefish0331/hello-world
 
 **Gitbook:**
 
-- google key word: build a gitbook on docker
-- [fellah/gitbook - Docker Hub](https://hub.docker.com/r/fellah/gitbook/): 有在更新。可以參考Dockerfile。
-- [yanqd0/gitbook - Docker Hub](https://hub.docker.com/r/yanqd0/gitbook/): 很久沒更新，inspire by fellah/gitbook。
-
-- [10,000小時的修煉之路: 【Docker】Ubuntu / gitbook](http://webcache.googleusercontent.com/search?q=cache:3yNCZ36iXKQJ:maxdev.huder.link/2016/02/dockerubuntu-gitbook.html+&cd=10&hl=zh-TW&ct=clnk&gl=tw): 教學在 ubuntu 上建立環境，架設 Gitbook。環境需要 `apt-get install nodejs, npm, nodejs-legacy`，接著可開始安裝 gitbook。
-
 ```{bash}
 docker pull fellah/gitbook
 
 // 記得先建立好連動資料夾，並把權限開啟。
 docker run --name FAE_no72_gitbook -v /datamount/Gitbook/FAE_no72:/srv/gitbook -p 4001:4000 -d fellah/gitbook
+```
+
+**Grafana:**
+
+```{bash}
+docker pull grafana/grafana
+docker run --name=grafana -v /data/grafana:/var/lib/grafana -p 3000:3000 -d grafana/grafana
+
+// 家目錄的位置不太一樣
+cd /usr/share/grafana/
 ```
 
 --
@@ -473,12 +525,6 @@ docker run --name some-mysql --env MYSQL_ROOT_PASSWORD=MYSQL@2020 -v /datamount/
 
 這主要是因為 Mysql 版本的問題。密碼加密的方式不同。
 
-- [MySQL 8.0 的新密碼加密 plugin 導致 PHP 連線失敗 - Zeroplex 生活隨筆](https://blog.zeroplex.tw/2019/07/mysql-80-plugin-php.html)
-- [連線 MySQL 8.0 時，加密方式不相容的解決方法 | IT人](https://iter01.com/443370.html)
-- [Andreas Geisler - Berlin based Full Stack Software Developer](http://www.andreasgeisler.com/blog/fatal-error-uncaught-pdoexception-the-server-requested-authentication-method-unknown-to-the-client-caching_sha2_password/2018/11/)
-- [Upgrading to MySQL 8.0 : Default Authentication Plugin Considerations | MySQL Server Blog](https://mysqlserverteam.com/upgrading-to-mysql-8-0-default-authentication-plugin-considerations/)
-- [MySQL密碼不能登錄的解決辦法 - 每日頭條](https://kknews.cc/zh-tw/code/b2jromj.html)
-
 **docker run:**
 
 到連動資料夾 /datamount/mysql/conf 底下，建立 my.cnf，
@@ -507,7 +553,7 @@ use mysql;
 SELECT user, authentication_string, host from user;
 
 // 設定可以用 mysql_native_password 加密方式登入。
-// ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'MYSQL@2020';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'MYSQL@2020';
 ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'MYSQL@2020';
 FLUSH PRIVILEGES;
 ```
@@ -584,10 +630,6 @@ command: --default-authentication-plugin=mysql_native_password
 
 ##### 看一些變數值
 
-- [查詢 MySQL 對 此帳號 開放(GRANT)哪些權限 | Tsung's Blog](https://blog.longwin.com.tw/2009/06/query-mysql-show-grant-permission-2009/)
-- [查詢 MySQL/MariaDB 資料庫的使用者帳號教學 - Office 指南](https://officeguide.cc/how-to-show-list-users-in-a-mysql-mariadb-database/)
-- [mysql 查詢 user 帳號及權限 @ Js 片段記憶回顧中心 :: 痞客邦 ::](https://jason0324.pixnet.net/blog/post/42795331-mysql-%E6%9F%A5%E8%A9%A2-user-%E5%B8%B3%E8%99%9F%E5%8F%8A%E6%AC%8A%E9%99%90)
-
 ```{bash}
 SHOW VARIABLES LIKE 'lower%';
 
@@ -615,8 +657,6 @@ GRANT ALL PRIVILEGES ON *.* TO 'kvgh'@'%';
 ```
 
 ##### 設定 local file 可以上傳
-
-- [MySQL: Enable LOAD DATA LOCAL INFILE - Stack Overflow](https://stackoverflow.com/questions/10762239/mysql-enable-load-data-local-infile)
 
 這樣就可以從程式端上傳資料，也可以用 LOAD 指令上傳local檔案。
 
@@ -665,6 +705,9 @@ mysql -u root -p
 即連動資料夾下，新增 my.cnf，修改裡面內容。  
 修改之後要重啟 container。
 
+- mysqld 是服務端程序 = 作為 MYSQL Server 的操作指令。
+- mysql是命令行客户端程序 = 作為 MYSQL Client 的操作指令
+
 ```{my.cnf}
 [client]
 default-character-set=utf8
@@ -701,12 +744,40 @@ character-set-server = utf8
 local-infile = 1
 ```
 
+#### BigObject
 
+```{bash}
+docker pull bigobject/bigobject
 
+docker run --name bigobject -p 9090:9090 -p 9091:9091 -p 3306:3306 -v /data/bigobject/ds:/srv/bo/ds  -v /data/bigobject/file:/srv/bo/file -d bigobject/bigobject
+```
 
+#### ElasticSearch
 
+```{bash}
+// ES 在 docker 上面沒有 latest tag。
+docker pull elasticsearch:7.8.1
 
+// elasticsearch 的 image 沒有做很好，所以在連動資料夾上，會有權限問題。
+// 解決方法就是先見一個沒有連動的，進去把要連度的資料夾權限打開(可以順便看一下該資料夾的擁有者與權限)。
+// 再 commit 一個新的 image，之後用這個權限開啟的 image 去啟動 container。
+docker run --name elasticsearch -e "discovery.type=single-node" -d elasticsearch:7.8.1
+docker exec -it elasticsearch bash
 
+  > chmod 777 data/ logs/ -R
+  > exit
+
+sudo su
+
+  > mkdir data logs
+  > chmod 777 data/ logs/ -R
+
+docker commit elasticsearch elasticsearch:permissions_open
+docker stop elasticsearch && docker rm elasticsearch
+
+// 依照新建的 image 建立 container
+docker run --name elasticsearch -e "discovery.type=single-node" -v /datamount/elasticsearch/data:/usr/share/elasticsearch/data -v /datamount/elasticsearch/logs:/usr/share/elasticsearch/logs -p 9200:9200 -p 9300:9300 -d elasticsearch:permissions_open
+```
 
 
 
@@ -725,7 +796,7 @@ docker run --name some-postgres \\
 -p 3307:3306 -e POSTGRES_PASSWORD=NCHC-COVID19 \\
 -e PGDATA=//data/pgdata -dit mariadb
 ```
-
+了解 postgres 如何新增使用者
 
 
 ---

@@ -72,6 +72,8 @@
 
 - docker stats
 
+- docker commit
+
 ---
 
 ## docker-compose
