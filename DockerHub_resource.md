@@ -490,23 +490,51 @@ local-infile = 1
 
 ## 下載 images-03code
 
-### MSSQL: SQL SERVER
+### R+Python+Julia+jupyter notebook
 
 - [jupyter's Profile - Docker Hub](https://hub.docker.com/u/jupyter)
 - [Selecting an Image — docker-stacks latest documentation](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-datascience-notebook)
 - [jupyter/docker-stacks: Ready-to-run Docker images containing Jupyter applications](https://github.com/jupyter/docker-stacks)
 
+**啟動 container:**
+
+```{bash}
+// 以 jupyter/datascience-notebook 這個 images 為例。
+// 其他 jupyter 帳號下的 images 應該都差不多，可以再研究一下。
+docker pull jupyter/datascience-notebook
+
+// 啟動 container
+// port 9999: 使用 jupyter lab
+// port 8888: 使用 jupyter notebook
 docker run --name rpyju_ds_lab -e JUPYTER_ENABLE_LAB=yes -v /datamount/rpyju/dslab:/home/jovyan/work -p 9999:8888 -d jupyter/datascience-notebook
 docker run --name rpyju_ds_nb -v /datamount/rpyju/dsnb:/home/jovyan/work -p 8888:8888 -d jupyter/datascience-notebook
+```
+
+**登入:**
 
 - [Running a notebook server — Jupyter Notebook 6.1.1 documentation](https://jupyter-notebook.readthedocs.io/en/stable/public_server.html)
-jupyter notebook list
-jupyter notebook password
-之後要學怎麼用在 
 
-- docker 指令中設定 token or password
-- dockerfile 指令中設定 token or password
+登入都需要 token，取得 token 的方式就是到 container 裡面呼叫。
+
+```{bash}
+docker exec -it rpyju_ds_lab bash
+//docker exec -it rpyju_ds_nb bash
+
+// 列出 token
+jupyter notebook list
+
+// 使用密碼登入。需要 restart container 才會生效。
+jupyter notebook password
+
+  > rpyju@lab2020
+  > rpyju@nb2020
+```
 
 ---
 
 ## END
+
+jupyter notebook/lab，之後要學怎麼用在
+
+- docker 指令中設定 token or password
+- dockerfile 指令中設定 token or password
