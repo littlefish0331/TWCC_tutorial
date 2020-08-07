@@ -24,7 +24,7 @@
 
 **list:**
 
-列出所有的套件。  
+列出所有的套件。  <br>
 list packages based on package names
 
 ```{bash}
@@ -44,8 +44,8 @@ apt list | grep ^docker  //dcoker 開頭的套件。
 
 ## Others
 
-- `whoami`: 顯示使用者名稱。  
-- `hostname`: 顯示主機名稱。  
+- `whoami`: 顯示使用者名稱。  <br>
+- `hostname`: 顯示主機名稱。  <br>
 - `ifconfig`: 查詢、設定網路卡與 IP 網域等相關參數。觀察所有的網路介面。用來獲取網路介面配置資訊並對此進行修改。。
 
 ---
@@ -94,13 +94,13 @@ file <filename>
 - [鳥哥的 Linux 私房菜 -- 第五章、Linux 的檔案權限與目錄配置](http://linux.vbird.org/linux_basic/0210filepermission.php)
 - -R, --recursive        change files and directories recursively
 
-Linux檔案的基本權限就有九個，分別是 owner/group/others 三種身份各有自己的read/write/execute權限。  
-檔案的權限字元為: 『-rwxrwxrwx』，這九個權限是三個三個一組的!  
-其中，我們可以使用數字來代表各個權限，各權限的分數對照表: r:4, w:2, x:1。  
+Linux檔案的基本權限就有九個，分別是 owner/group/others 三種身份各有自己的read/write/execute權限。  <br>
+檔案的權限字元為: 『-rwxrwxrwx』，這九個權限是三個三個一組的!  <br>
+其中，我們可以使用數字來代表各個權限，各權限的分數對照表: r:4, w:2, x:1。  <br>
 每種身份(owner/group/others)各自的三個權限(r/w/x)分數是需要累加的。
 
-還有一個改變權限的方法，基本上就九個權限分別是 user(owner)/group/others 三種身份。  
-那麼我們就可以藉由 u, g, o 來代表三種身份的權限，a則代表 all 亦即全部的身份。  
+還有一個改變權限的方法，基本上就九個權限分別是 user(owner)/group/others 三種身份。  <br>
+那麼我們就可以藉由 u, g, o 來代表三種身份的權限，a則代表 all 亦即全部的身份。  <br>
 讀、寫、執行的權限就可以寫成r, w, x。
 
 ![permission](./image/permission.jpg)
@@ -138,7 +138,7 @@ chown -R ubuntu:ubuntu /data2/bigobject
 
 ### window
 
-關於 windows 的 cmd 歷史紀錄，  
+關於 windows 的 cmd 歷史紀錄，  <br>
 請按 F7，或是指令 `doskey /history`
 
 ---

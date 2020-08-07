@@ -1,7 +1,7 @@
 # README
 
-記得 VM 剛啟動的時候，建議最好 `sudo reboot` 一下，之前的經驗是有一些檔案好像還處於 lock 狀態。  
-跟著目錄(content)慢慢學習，大概可以一步步學習使用 TWCC 的資源。  
+記得 VM 剛啟動的時候，建議最好 `sudo reboot` 一下，之前的經驗是有一些檔案好像還處於 lock 狀態。  <br>
+跟著目錄(content)慢慢學習，大概可以一步步學習使用 TWCC 的資源。  <br>
 docker 的部分就十分建議看官方的 tutorial!!
 
 **密碼不怕看，因為 port 我有鎖國網的網域!!**
@@ -25,7 +25,7 @@ docker 的部分就十分建議看官方的 tutorial!!
 
 - [How do I create a new line without creating a new paragraph? - GitBook Help Center · GitBook (Legacy)](https://legacy.gitbook.com/book/gitbookio/help/discussions/40)
 
-恩..這問題比較複雜，但是簡單來說就是必須在每個檔案的後面加上 <br>。  
+恩..這問題比較複雜，但是簡單來說就是必須在每個檔案的後面加上 <br>。  <br>
 p.s.這和 git config --local core.autocrlf 的設定無關。如果不小心變更到，就到 .git/config 檔案修改就行了。(--local or --golobal or --system)
 
 ```{bash}
@@ -37,19 +37,19 @@ p.s.這和 git config --local core.autocrlf 的設定無關。如果不小心變
 
 - [2019-01-06 Github 上傳錯誤， master (push declined due to email privacy restrictions - 簡書](https://www.jianshu.com/p/ae80af8f65e5)
 
-要先去自己 Github 帳號的 E-mail settings，  
+要先去自己 Github 帳號的 E-mail settings，  <br>
 把「Block command line pushes that expose my email」這個選項取消掉!!
 
 ![github_email_setting_command_line](./image/github_email_setting_command_line.jpg)
 
-或是如參考資料提供的方法，去 E-mail settings > Keep my email addresses private，  
+或是如參考資料提供的方法，去 E-mail settings > Keep my email addresses private，  <br>
 使用 Github 所提供的 Email。
 
 ---
 
 ## 專案目標
 
-學習如何在VM上架設各種服務、應用程式、網路設定，  
+學習如何在VM上架設各種服務、應用程式、網路設定，  <br>
 以及如何讓不同服務之間溝通。最後打包成果與個體快照:
 
 - Docker
