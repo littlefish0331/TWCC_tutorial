@@ -21,6 +21,8 @@ docker 的部分就十分建議看官方的 tutorial!!
 
 抓取專案請用 `git clone https://github.com/littlefish0331/TWCC_tutorial.git --branch share_note`
 
+> --branch 可以用 -b。
+
 **結尾設定(end-of-line marker):**
 
 - [How do I create a new line without creating a new paragraph? - GitBook Help Center · GitBook (Legacy)](https://legacy.gitbook.com/book/gitbookio/help/discussions/40)
@@ -29,8 +31,9 @@ docker 的部分就十分建議看官方的 tutorial!!
 p.s.這和 git config --local core.autocrlf 的設定無關。如果不小心變更到，就到 .git/config 檔案修改就行了。(--local or --golobal or --system)
 
 ```{bash}
-// 在該資料夾目錄下
-
+// 在該資料夾目錄下，輸入下列指令完成。
+// 建議是在 wsl 環境下執行，但 cmd or powershell 也可以。
+sed --in-place 's/  \r$/  <br>\r/g' *.md
 ```
 
 **上傳設定:**
