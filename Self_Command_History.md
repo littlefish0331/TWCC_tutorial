@@ -6,7 +6,32 @@
 簡單來說就是我的指令記事本啦XD~  
 所以這邊都是從其他的 .md 檔複製過來之後，再做一點排版和補充。
 
-<!-- TOC -->autoauto- [Self Command History](#self-command-history)auto    - [basic](#basic)auto        - [歷史資訊清除](#歷史資訊清除)auto        - [重開機](#重開機)auto        - [已經安裝的套件](#已經安裝的套件)auto        - [磁碟使用的初始狀況](#磁碟使用的初始狀況)auto        - [權限](#權限)auto            - [檔案](#檔案)auto            - [目錄之擁有者或群組](#目錄之擁有者或群組)auto        - [顯示目錄下-檔案-編碼-結尾換行符號](#顯示目錄下-檔案-編碼-結尾換行符號)auto        - [su 最高權限者](#su-最高權限者)auto        - [Others](#others)auto        - [修改 ssh 登入](#修改-ssh-登入)auto        - [TWCC-port connect](#twcc-port-connect)auto    - [mount/umount Disk](#mountumount-disk)auto        - [掛載狀況](#掛載狀況)auto        - [格式化、掛載、卸除](#格式化掛載卸除)auto        - [設定開機自動掛載](#設定開機自動掛載)auto    - [Docker](#docker)auto        - [下載與設定](#下載與設定)auto            - [docker](#docker)auto            - [加入 docker 帳號到群組](#加入-docker-帳號到群組)auto            - [DockerHub login](#dockerhub-login)auto            - [docker-compose](#docker-compose)auto        - [下載 images-01](#下載-images-01)auto            - [OS system](#os-system)auto            - [website](#website)auto        - [下載 images-02Database](#下載-images-02database)auto            - [MSSQL: SQL SERVER](#mssql-sql-server)auto            - [mariadb](#mariadb)auto            - [下載 MySQL](#下載-mysql)auto                - [密碼無法登入的問題](#密碼無法登入的問題)auto                - [看一些變數值](#看一些變數值)auto                - [建立新用戶](#建立新用戶)auto                - [設定 local file 可以上傳](#設定-local-file-可以上傳)auto                - [mysql編碼](#mysql編碼)auto            - [BigObject](#bigobject)auto            - [ElasticSearch](#elasticsearch)auto    - [END](#end)autoauto<!-- /TOC -->
+<!-- TOC -->
+
+- [Self Command History](#self-command-history)
+  - [basic](#basic)
+    - [歷史資訊清除](#歷史資訊清除)
+    - [重開機](#重開機)
+    - [已經安裝的套件](#已經安裝的套件)
+    - [磁碟使用的初始狀況](#磁碟使用的初始狀況)
+    - [權限](#權限)
+    - [顯示目錄下-檔案-編碼-結尾換行符號](#顯示目錄下-檔案-編碼-結尾換行符號)
+    - [su 最高權限者](#su-最高權限者)
+    - [Others](#others)
+    - [修改 ssh 登入](#修改-ssh-登入)
+    - [TWCC-port connect](#twcc-port-connect)
+  - [mount/umount Disk](#mountumount-disk)
+    - [掛載狀況](#掛載狀況)
+    - [格式化、掛載、卸除](#格式化掛載卸除)
+    - [設定開機自動掛載](#設定開機自動掛載)
+  - [Docker](#docker)
+    - [下載與設定](#下載與設定)
+    - [下載 images-01](#下載-images-01)
+    - [下載 images-02Database](#下載-images-02database)
+    - [下載 images-03code](#下載-images-03code)
+  - [END](#end)
+
+<!-- /TOC -->
 
 ---
 
@@ -345,6 +370,7 @@ docker run -p 8080:80 --name DockerCon2020 -d littlefish0331/hello-world
 docker pull fellah/gitbook
 
 // 記得先建立好連動資料夾，並把權限開啟。
+// docker run --name TWCC_tutorial_gitbook -v /datamount/Gitbook/TWCC_tutorial:/srv/gitbook -p 4000:4000 -d fellah/gitbook
 docker run --name FAE_no72_gitbook -v /datamount/Gitbook/FAE_no72:/srv/gitbook -p 4001:4000 -d fellah/gitbook
 ```
 
