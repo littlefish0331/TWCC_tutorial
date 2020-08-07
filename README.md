@@ -1,13 +1,39 @@
 # README
 
-<!-- X副對員工這麼壞= =，那公司的產品我還不用爆!  
-把資源用到大爆炸的那一種XDD~   -->
-
 記得 VM 剛啟動的時候，建議最好 `sudo reboot` 一下，之前的經驗是有一些檔案好像還處於 lock 狀態。  
 跟著目錄(content)慢慢學習，大概可以一步步學習使用 TWCC 的資源。  
 docker 的部分就十分建議看官方的 tutorial!!
 
 **密碼不怕看，因為 port 我有鎖國網的網域!!**
+
+## gitbook設定
+
+**結尾設定:**
+
+- [Git 解決出現 warning: LF will be replaced by CRLF ... The file will have its original line endings in your working directory. « 關於網路那些事...](https://adon988.logdown.com/posts/7642074-git-resolves-to-appear-warninglfll-be-replaced-by-crlf-the-file-would-have-its-original-line-endings-in-your-working-directory)
+- [LF will be replaced by CRLF in git - What is that and is it important? - Stack Overflow](https://stackoverflow.com/questions/5834014/lf-will-be-replaced-by-crlf-in-git-what-is-that-and-is-it-important)
+- [git replacing LF with CRLF - Stack Overflow](https://stackoverflow.com/questions/1967370/git-replacing-lf-with-crlf)
+
+因為 windows 開發環境和 Unix 開發環境，在文件結尾上有所不同。  
+windows 是 CRLF，Unix 為 LF。
+
+因此直接在 VM 上做 git clone 分支時，Gitbook 的呈現就產生問題。  
+這邊需要對該專案進行 git config 的設定。
+
+```{git}
+git config --local core.autocrlf false
+```
+
+**上傳設定:**
+
+- [2019-01-06 Github 上傳錯誤， master (push declined due to email privacy restrictions - 簡書](https://www.jianshu.com/p/ae80af8f65e5)
+
+要先去自己 Github 帳號的 E-mail settings，  
+把「Block command line pushes that expose my email」這個選項取消掉!!
+
+![github_email_setting_command_line](./image/github_email_setting_command_line.jpg)
+
+---
 
 ## 專案目標
 
