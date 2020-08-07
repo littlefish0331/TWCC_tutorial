@@ -19,21 +19,18 @@ docker 的部分就十分建議看官方的 tutorial!!
 
 ## gitbook設定
 
+抓取專案請用 `git clone https://github.com/littlefish0331/TWCC_tutorial.git --branch share_note`
+
 **結尾設定(end-of-line marker):**
 
-- [git replacing LF with CRLF - Stack Overflow](https://stackoverflow.com/questions/1967370/git-replacing-lf-with-crlf)
-- [Git Autocrlf 與 Safecrlf | ShunNien's Blog](https://shunnien.github.io/2018/06/03/git-autocrlf-and-safecrlf/)
-- [解決斷行問題 · GIT教學](https://kingofamani.gitbooks.io/git-teach/content/chapter_5/crlf_problem.html)
+- [How do I create a new line without creating a new paragraph? - GitBook Help Center · GitBook (Legacy)](https://legacy.gitbook.com/book/gitbookio/help/discussions/40)
 
-因為 windows 開發環境和 Unix 開發環境，在文件結尾上有所不同。  
-windows 是 CRLF，Unix 為 LF。
+恩..這問題比較複雜，但是簡單來說就是必須在每個檔案的後面加上 <br>。  
+p.s.這和 git config --local core.autocrlf 的設定無關。如果不小心變更到，就到 .git/config 檔案修改就行了。(--local or --golobal or --system)
 
-因此直接在 VM 上做 git clone 分支時，Gitbook 的呈現就產生問題。  
-這邊需要對該專案進行 git config 的設定，  
-設定完成後，在 windows 端使用 CRLF 直接上傳就行了。
+```{bash}
+// 在該資料夾目錄下
 
-```{git}
-git config --local core.autocrlf false
 ```
 
 **上傳設定:**
