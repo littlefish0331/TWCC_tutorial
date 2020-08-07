@@ -13,23 +13,23 @@
 
 ## 金鑰檔方式
 
-因為ssh服務預設使用金鑰做登入，所以.pem/.ppk檔的登入方式，是沒問題的。  <br>
+因為ssh服務預設使用金鑰做登入，所以.pem/.ppk檔的登入方式，是沒問題的。  
 
 - .ppk 可以用 PuTTY.exe 做連線。
 - .pem 可以用 MobaXterm/cmd 做連線。
 
-連線時的port為22。  <br>
+連線時的port為22。  
 使用者帳號為 ubuntu系統為ubuntu / centos系統為centos / windows系統為administrator。
 
 --
 
 **PuTTY 登入:**
 
-請先用 PuTTYgen 將.pem檔轉為.ppk檔。  <br>
-參考: [PuTTYgen 將 .pem 金鑰檔案轉為 .ppk 格式教學 - Office 指南](https://officeguide.cc/putty-convert-pem-to-ppk-tutorial/)  <br>
-將轉換好的.ppk檔案，放到 PuTTY.exe > Connection > SSH > Auth > Private key file for authentication。  <br>
-並在 PuTTY.exe > Session > Host Name (or IP address)，填入想連線的IP。  <br>
-設定好了之後，按下右下角的 Open，  <br>
+請先用 PuTTYgen 將.pem檔轉為.ppk檔。  
+參考: [PuTTYgen 將 .pem 金鑰檔案轉為 .ppk 格式教學 - Office 指南](https://officeguide.cc/putty-convert-pem-to-ppk-tutorial/)  
+將轉換好的.ppk檔案，放到 PuTTY.exe > Connection > SSH > Auth > Private key file for authentication。  
+並在 PuTTY.exe > Session > Host Name (or IP address)，填入想連線的IP。  
+設定好了之後，按下右下角的 Open，  
 輸入使用者帳號名稱(比如:ubuntu系統即為ubuntu)，即可進入。
 
 **MobaXterm 登入示意圖:**
@@ -39,7 +39,7 @@
 
 ## 帳號密碼
 
-但是有些人不習慣使用金鑰的方式做登入，那要怎麼把 ssh 的設定做修改呢?  <br>
+但是有些人不習慣使用金鑰的方式做登入，那要怎麼把 ssh 的設定做修改呢?  
 首先要先建立帳號
 
 ```{bash}
@@ -61,7 +61,7 @@ sudo vim /etc/sudoers  --修改文件
 ```{bash}
 sudo vim /etc/ssh/sshd_config  --修改 ssh 服務的設定。
 
-  > 將 PasswordAuthentication no 改為 yes。  <br>
+  > 將 PasswordAuthentication no 改為 yes。  
   > PasswordAuthentication yes
 ```
 

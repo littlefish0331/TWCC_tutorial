@@ -56,7 +56,7 @@ Get started > Quickstart > Part 1: Orientation and setup > 參考 video: DockerC
 - [Orientation and setup | Docker Documentation](https://docs.docker.com/get-started/)
 - [roninjs/docker-hello-world](https://github.com/roninjs/docker-hello-world): 王八蛋，要先給這個 Github 阿!!不然怎麼跟著做。
 
-架網站(or網頁?) node 服務，需要packages.json等一些設置，所以才需要原作者的 Github，  <br>
+架網站(or網頁?) node 服務，需要packages.json等一些設置，所以才需要原作者的 Github，  
 總之，如果資源都有給充足的話，是一個很舒服的 tutorial。
 
 ```{bash}
@@ -129,7 +129,7 @@ Get started > Quickstart > Part 2: Build and run your image
 
 - [How to Install Docker On Ubuntu 18.04 {2020 Tutorial}](https://phoenixnap.com/kb/how-to-install-docker-on-ubuntu-18-04)
 
-There are two versions of Docker – Docker CE (Community Edition) and Docker EE (Enterprise Edition).  <br>
+There are two versions of Docker – Docker CE (Community Edition) and Docker EE (Enterprise Edition).  
 If you have a small-scale project, or you're just learning, you will want to use Docker CE.
 
 **check unbuntu version:**
@@ -155,9 +155,9 @@ sudo systemctl start docker
 sudo systemctl enable docker
 ```
 
-Older versions of the Docker binary were called docker or docker-engine or docker-io  <br>
-docker-io package is still the name used by Debian/Ubuntu for the docker release provided on their official repos.  <br>
-docker-ce is a certified release provided directly by docker.com and can also be built from source.  <br>
+Older versions of the Docker binary were called docker or docker-engine or docker-io  
+docker-io package is still the name used by Debian/Ubuntu for the docker release provided on their official repos.  
+docker-ce is a certified release provided directly by docker.com and can also be built from source.  
 Main reason for using the name docker-io on Debian/Ubuntu platform was to avoid a name conflict with docker system-tray binary.
 
 > 較舊版本的Docker二進製文件稱為docker或docker-engine或docker-io
@@ -301,7 +301,7 @@ groups
 
 **不推薦:**
 
-下載安裝後，找不到systemctl下的服務名稱，雖然指令可以使用，但是會要一直打sudo。  <br>
+下載安裝後，找不到systemctl下的服務名稱，雖然指令可以使用，但是會要一直打sudo。  
 總之，不是很清楚明白每個環節。
 
 ```{bash}
