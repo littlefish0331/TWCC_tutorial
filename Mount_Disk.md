@@ -1,6 +1,6 @@
 # Mount Disk
 
-其實就和在 windows 系統一樣，要新增硬碟，也就是掛上去之前，都是要初始化的。  
+其實就和在 windows 系統一樣，要新增硬碟，也就是掛上去之前，都是要初始化的。  <br>
 然後 linux 的硬碟格式可能和我們熟知的不太一樣。
 
 - windows 推薦 NTFS
@@ -32,7 +32,7 @@
 
 **掛載狀況:**
 
-- 磁碟使用的初始狀況。  
+- 磁碟使用的初始狀況。  <br>
 - -h, --human-readable: print sizes in powers of 1024 (e.g., 1023M)
 
 ```{bash}
@@ -41,7 +41,7 @@ df -h
 
 - 列出所有(掛載中)磁碟
 
-> 利用 blkid 這個指令，它可以列出所有掛載中磁碟的 UUID。  
+> 利用 blkid 這個指令，它可以列出所有掛載中磁碟的 UUID。  <br>
 > blk: 是指 block device，即儲存裝置。
 
 ```{bash}
@@ -70,7 +70,7 @@ df -h
 
 **設定開機自動掛載:**
 
-各欄說明：`<file system> <mount point>   <type> <options> <dump> <pass>`  
+各欄說明：`<file system> <mount point>   <type> <options> <dump> <pass>`  <br>
 
 - file system：磁碟裝置代號或該裝置的 Label。
 - mount point：掛載點。

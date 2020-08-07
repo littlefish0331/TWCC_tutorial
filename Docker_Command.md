@@ -1,12 +1,12 @@
 # Docker Command
 
-簡單記錄使用過的 docker 指令，有點類似 cheet sheet。  
+簡單記錄使用過的 docker 指令，有點類似 cheet sheet。  <br>
 
 ---
 
 ## docker
 
-- docker version: docker 的 version。  
+- docker version: docker 的 version。  <br>
 
 - docker run: Run a command in a new container
   - docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
@@ -78,14 +78,14 @@
 
 ## docker-compose
 
-Define and run multi-container applications with Docker.  
+Define and run multi-container applications with Docker.  <br>
 除了可以用 .yml 腳本啟動之外，其他我覺得和一般的 docker 指令差不多。
 
 - Usage: docker-compose [-f <arg>...] [options] [COMMAND] [ARGS...]
 - Options:
   - -f, --file FILE             Specify an alternate compose file (default: docker-compose.yml)
   - -p, --project-name NAME     Specify an alternate project name (default: directory name)
-  - --verbose                   Show more output  
+  - --verbose                   Show more output  <br>
 - Commands:
   - build              Build or rebuild services
   - create             Create services
@@ -122,12 +122,12 @@ Define and run multi-container applications with Docker.
 
 ## windows Docker 群組權限
 
-使用 windows 系統下的 Docker 時，  
+使用 windows 系統下的 Docker 時，  <br>
 會預設建立一個 docker group，所以要把使用者加到那個群組。
 
 - [針對 Windows 上的 Docker 用戶端錯誤進行疑難排解 - Visual Studio | Microsoft Docs](https://docs.microsoft.com/zh-tw/visualstudio/containers/troubleshooting-docker-errors?view=vs-2019)
 
-windows + x > 電腦管理 > 本機使用者和群組 > 群組 > docker-users。  
+windows + x > 電腦管理 > 本機使用者和群組 > 群組 > docker-users。  <br>
 到這裡面做設定。
 
 ---
@@ -169,7 +169,7 @@ docker run -p 8080:80 --name DockerCon -d littlefish0331/hello-world
 
 - [mysql - Docker Hub](https://hub.docker.com/_/mysql?tab=description)
 
-如果連動的資料夾沒有建立，docker會自動建立幫忙建立該路徑的資料夾。  
+如果連動的資料夾沒有建立，docker會自動建立幫忙建立該路徑的資料夾。  <br>
 如果不想要有密碼問題就 pull 5.7.31版的 MySQL。
 
 密碼無法登入的問題，詳見 Self_Command_History.md。

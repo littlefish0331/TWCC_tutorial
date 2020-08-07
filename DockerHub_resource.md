@@ -22,7 +22,7 @@
   - jupyter notebook mini/r/scipy: 8801, 8802, 8803
   - R+Python+Julia+jupyter notebook/lab: 8800, 9900
   - [【Docker】建立 Jupyter Container. 這邊使用jupyter/datascience-notebook(https:/… | by JiHung Lin | Medium](https://medium.com/@jihung.mycena/docker-%E5%BB%BA%E7%AB%8B-jupyter-container-8084748e2f33)
-  
+  <br>
 ---
 
 ## 下載 images-01
@@ -226,7 +226,7 @@ mysql -u root -p
 
 **修改 Configuration file 與結果:**
 
-即連動資料夾下，新增 my.cnf，修改裡面內容。  
+即連動資料夾下，新增 my.cnf，修改裡面內容。  <br>
 修改之後要重啟 container。
 
 ```{mysql}
@@ -243,16 +243,16 @@ init-connect='SET NAMES utf8'
 character-set-server = utf8
 ```
 
-![mariadb_setting00_mycnf](./image/mariadb_setting00_mycnf.jpg)  
-![mariadb_setting01](./image/mariadb_setting01.jpg)  
-![mariadb_setting02](./image/mariadb_setting02.jpg)  
+![mariadb_setting00_mycnf](./image/mariadb_setting00_mycnf.jpg)  <br>
+![mariadb_setting01](./image/mariadb_setting01.jpg)  <br>
+![mariadb_setting02](./image/mariadb_setting02.jpg)  <br>
 
 --
 
 ### 下載 MySQL
 
 - [mysql - Docker Hub](https://hub.docker.com/_/mysql?tab=description)
-- 連動的資料夾會自動建立。  
+- 連動的資料夾會自動建立。  <br>
 
 ```{bash}
 docker run --name some-mysql \
@@ -279,7 +279,7 @@ docker run --name some-mysql --env MYSQL_ROOT_PASSWORD=MYSQL@2020 -v /datamount/
 **docker run:**
 
 到連動資料夾 /datamount/mysql/conf 底下，建立 my.cnf，
-在 my.cnf 加上下列資訊，然後重啟 container。  
+在 my.cnf 加上下列資訊，然後重啟 container。  <br>
 
 ```{my.cnf}
 [mysqld]
@@ -318,11 +318,11 @@ command: --default-authentication-plugin=mysql_native_password
 ```
 
 > 以下是舊的做法，依舊可用，指示步驟比較多一點。
->  
+>  <br>
 > **Step01:**
 >
-> 去 /DBdata/mysql/conf 新增 my.cnf。  
-> 新增與修改檔案要用 sudo su 權限。  
+> 去 /DBdata/mysql/conf 新增 my.cnf。  <br>
+> 新增與修改檔案要用 sudo su 權限。  <br>
 >
 >
 > ```{my.cnf}
@@ -336,7 +336,7 @@ command: --default-authentication-plugin=mysql_native_password
 >
 > **Step02:**
 >
-> 登入 container  
+> 登入 container  <br>
 > 登入 mysql，密碼 DAS@mysql2020
 >
 > ```{bash}
@@ -459,7 +459,7 @@ mysql -u root -p
 
 **修改 Configuration file 與結果:**
 
-即連動資料夾下，新增 my.cnf，修改裡面內容。  
+即連動資料夾下，新增 my.cnf，修改裡面內容。  <br>
 修改之後要重啟 container。
 
 - mysqld 是服務端程序 = 作為 MYSQL Server 的操作指令。
@@ -563,7 +563,7 @@ docker run --name elasticsearch -e "discovery.type=single-node" -v /datamount/el
 - [rocker/rstudio Tags - Docker Hub](https://hub.docker.com/r/rocker/rstudio/tags)
 
 建議下載 tag 有 ubuntu 的版本。
-因為有嘗試過 tag: 3.6.3，結果啟動 container 失敗。  
+因為有嘗試過 tag: 3.6.3，結果啟動 container 失敗。  <br>
 
 ```{bash}
 // 下載 tag: 3.6.3-ubuntu18.04
@@ -592,7 +592,7 @@ docker run --name rstudio_latest \
 
 **安裝R套件:**
 
-目前套件可以直接安裝。  
+目前套件可以直接安裝。  <br>
 如果以後遇到失敗的狀況，可以嘗試下列方法:
 
 - install.packages(pkgs = "package_name", lib = "your_path)
