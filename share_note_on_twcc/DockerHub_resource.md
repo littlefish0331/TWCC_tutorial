@@ -79,6 +79,7 @@ docker run -p 8080:80 --name DockerCon2020 -d littlefish0331/hello-world
 docker pull fellah/gitbook
 
 // 記得先建立好連動資料夾，並把權限開啟。
+// docker run --name share_note_gitbook -v /datamount/Gitbook/share_note:/srv/gitbook -p 4000:4000 -d fellah/gitbook
 docker run --name FAE_no72_gitbook -v /datamount/Gitbook/FAE_no72:/srv/gitbook -p 4001:4000 -d fellah/gitbook
 ```
 
