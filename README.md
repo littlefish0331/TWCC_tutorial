@@ -6,7 +6,14 @@ docker 的部分就十分建議看官方的 tutorial!!
 
 **密碼不怕看，因為 port 我有鎖國網的網域!!**
 
-<!-- TOC -->autoauto- [README](#readme)auto  - [gitbook設定](#gitbook設定)auto  - [專案目標](#專案目標)auto  - [END](#end)autoauto<!-- /TOC -->
+<!-- TOC -->
+
+- [README](#readme)
+  - [gitbook設定](#gitbook設定)
+  - [專案目標](#專案目標)
+  - [END](#end)
+
+<!-- /TOC -->
 
 ---
 
