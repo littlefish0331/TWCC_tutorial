@@ -291,7 +291,7 @@ sh get-docker.sh
 #### 加入 docker 帳號到群組
 
 因為 Docker 安裝後，會建立一個 docker 帳號和群組。  
-如果沒有把 docker 帳號加入群組，就會北次使用 docker 指令都需要 sudo，  
+如果沒有把 docker 帳號加入群組，就會每次使用 docker 指令都需要 sudo，  
 為了者直接使用 docker 指令，所以要把 docker 加入 ubuntu 群組中。  
 
 - 當使用 "-G" 參數時, usermod 會將帳號從原來加入了的群組退出, 所以在 "-G" 參數前加入 "-a" 參數, 會保留原來的群組設定。
