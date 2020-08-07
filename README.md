@@ -6,9 +6,13 @@ docker 的部分就十分建議看官方的 tutorial!!
 
 **密碼不怕看，因為 port 我有鎖國網的網域!!**
 
+<!-- TOC -->autoauto- [README](#readme)auto  - [gitbook設定](#gitbook設定)auto  - [專案目標](#專案目標)auto  - [END](#end)autoauto<!-- /TOC -->
+
+---
+
 ## gitbook設定
 
-**結尾設定:**
+**結尾設定(end-of-line marker):**
 
 - [Git 解決出現 warning: LF will be replaced by CRLF ... The file will have its original line endings in your working directory. « 關於網路那些事...](https://adon988.logdown.com/posts/7642074-git-resolves-to-appear-warninglfll-be-replaced-by-crlf-the-file-would-have-its-original-line-endings-in-your-working-directory)
 - [LF will be replaced by CRLF in git - What is that and is it important? - Stack Overflow](https://stackoverflow.com/questions/5834014/lf-will-be-replaced-by-crlf-in-git-what-is-that-and-is-it-important)
@@ -18,7 +22,8 @@ docker 的部分就十分建議看官方的 tutorial!!
 windows 是 CRLF，Unix 為 LF。
 
 因此直接在 VM 上做 git clone 分支時，Gitbook 的呈現就產生問題。  
-這邊需要對該專案進行 git config 的設定。
+這邊需要對該專案進行 git config 的設定，  
+設定完成後，在 windows 端都可以使用 CRLF 直接上傳就行了。
 
 ```{git}
 git config --local core.autocrlf false
@@ -32,6 +37,9 @@ git config --local core.autocrlf false
 把「Block command line pushes that expose my email」這個選項取消掉!!
 
 ![github_email_setting_command_line](./image/github_email_setting_command_line.jpg)
+
+或是如參考資料提供的方法，去 E-mail settings > Keep my email addresses private，  
+使用 Github 所提供的 Email。
 
 ---
 
